@@ -1,0 +1,262 @@
+export const locales = [
+  { code: 'en', label: 'English', short: 'EN', flag: 'gb', available: true },
+  { code: 'tr', label: 'Türkçe', short: 'TR', flag: 'tr', available: true },
+  { code: 'et', label: 'Eesti', short: 'ET', flag: 'ee', available: false },
+  { code: 'es', label: 'Español', short: 'ES', flag: 'es', available: false },
+  { code: 'fi', label: 'Suomi', short: 'FI', flag: 'fi', available: false },
+]
+
+export const translations = {
+  tr: {
+    nav: {
+      work: 'İşlerimiz',
+      services: 'Hizmetler',
+      about: 'Hakkımızda',
+      contact: 'İletişim',
+      cta: 'Hadi başlayalım',
+    },
+    hero: {
+      label: 'Yapay Zeka İçerik Ajansı',
+      titleBefore: 'Fikirleri',
+      titleAccent: 'izlenmeye değer hikâyelere',
+      titleAfter: 'dönüştürüyoruz.',
+      description: 'Markanız için yapay zeka destekli filmler ve yaratıcı video içerikleri.',
+      explore: 'İşlerimizi keşfedin',
+      showreel: 'Showreel izle',
+      strip: ['AI Reklamlar', 'Ürün Videoları', 'Sosyal İçerik'],
+    },
+    portfolio: {
+      label: 'İşlerimiz',
+      title: 'Öne Çıkanlar',
+      subtitle: 'Yapay zeka ile üretilmiş, öne çıkan hikâyeler.',
+      viewAll: 'Tüm videolar',
+      shortTitle: 'Kısa format hikâyeler',
+      filmTitle: 'Sinematik filmler',
+    },
+    services: {
+      label: 'Hizmetler',
+      title: 'Ne Yapıyoruz',
+      items: [
+        {
+          title: 'AI Reklamlar',
+          description:
+            'Konseptten son kurguya kadar yapay zeka ile üretilmiş sinematik marka filmleri — scroll’u durduran, akılda kalan işler.',
+        },
+        {
+          title: 'Ürün Videoları',
+          description:
+            'Premium hissiyatlı ürün hikâyeleri. Ürünlerinizi az konuşan, çok satan filmlere dönüştürüyoruz.',
+        },
+        {
+          title: 'Sosyal İçerik',
+          description:
+            'Platformlar için kurgulanmış kısa format seriler. Hızlı iterasyon, güçlü hook’lar ve markaya sadık bir dil.',
+        },
+      ],
+    },
+    feedback: {
+      label: 'Müşteri Yorumları',
+      titleBefore: 'Güçlü hikâyeler.',
+      titleAccent: 'Daha güçlü ortaklıklar.',
+      subtitle: 'Yaratıcı süreç hakkında birkaç söz.',
+      caption: 'Gerçek müşteri sesleri · İsimler önizleme için kullanılmıştır',
+    },
+    cta: {
+      label: 'Konuşalım',
+      title: 'Bir fikrin mi var? Birlikte izlenmeye değer hale getirelim.',
+      button: 'Bize anlatın',
+    },
+    footer: {
+      tagline: 'Yaratıcı fikirler. Etkileyici videolar.',
+    },
+    about: {
+      label: 'Hakkımızda',
+      title: 'Hikâye anlatan,',
+      titleAccent: 'iş bilen bir ekip.',
+      paragraphs: [
+        'Tenidy, 2014’e uzanan pazarlama, sosyal medya, e-ticaret ve yazılım deneyimini bir araya getiriyor. Yolculuğumuz Türkiye’de başladı; bugün Estonya ve Amerika Birleşik Devletleri’ndeki ofislerimizle, yaratıcı düşünceyi iş dünyasına dair pratik bir anlayışla birleştirerek devam ediyor.',
+        'Yapay zeka araçları yeni yaratıcı olanaklar açtıkça, yapay zeka destekli video ve görsel içeriği işimizin merkezine aldık. Bugün her markanın kişiliğine, kitlesine ve hedeflerine özel reklam filmleri, ürün görselleri, sinematik hikâyeler ve sosyal içerikler üretiyoruz. Ayrıca işletmelerin sosyal medya varlıklarını kurmasına, büyütmesine ve yönetmesine yardımcı oluyoruz.',
+        'Dijital sektörlerdeki yılların deneyimi, dikkati nasıl kazanacağımızı ve bunu nasıl değerlendireceğimizi öğretti. Açılış kancasını, hikâyeyi, temposunu ve birini izlemeye veya paylaşmaya neyin teşvik ettiğini dikkatle düşünüyoruz. Bu bakış açısını her projeye taşıyor; yeni fikirleri denemeye ve keşfetmeye açık kalıyoruz.',
+        'Küçük, uygulamaya dönük bir ekibiz; net iletişimi ve özenli iş birliğini önemsiyoruz. İşinizi anlamaya zaman ayırıyor, masaya fikirler getiriyor ve ilk sohbetten son kurguya kadar sürecin içinde kalıyoruz. Yeni bir şey lansmanı yapıyor veya markanıza taze bir enerji katmak istiyorsanız, insanların hatırlayacağı bir şey yaratmanıza yardımcı olmaktan mutluluk duyarız.',
+      ],
+      stats: [
+        { value: '2014', label: 'Başlangıç' },
+        { value: '3', label: 'Ülke' },
+        { value: 'AI', label: 'Odak' },
+      ],
+      cta: 'Birlikte çalışalım',
+    },
+    contact: {
+      label: 'İletişim',
+      title: 'İyi fikirler bir',
+      titleAccent: 'sohbetle başlar.',
+      subtitle:
+        'Aklındakini bize anlat. Bir sonraki adımı birlikte şekillendirelim.',
+      whatsappLabel: 'WhatsApp',
+      whatsappCta: 'WhatsApp’tan yaz',
+      emailLabel: 'E-posta',
+      email: 'hello@tenidy.com',
+      formTitle: 'Projenizi anlatın',
+      formSubtitle: 'Başlamak için birkaç detay yeterli.',
+      name: 'Ad Soyad',
+      namePlaceholder: 'Adın',
+      company: 'Şirket',
+      companyOptional: 'Şirket (isteğe bağlı)',
+      companyPlaceholder: 'Şirket veya marka',
+      emailField: 'E-posta',
+      emailPlaceholder: 'you@company.com',
+      projectType: 'Hangi konuda yardımcı olabiliriz?',
+      projectTypes: ['AI Video', 'Görsel İçerik', 'Sosyal Medya'],
+      message: 'Fikriniz',
+      messagePlaceholder: 'Ne yaratmak istersiniz?',
+      send: 'Talep gönder',
+      privacy: 'Bilgilerinizi yalnızca talebinize yanıt vermek için kullanacağız.',
+      hqLabel: 'Merkezler',
+      hqSubtitle: 'Üç ülkede, tek ekip.',
+      offices: [
+        { city: 'Wyoming', country: 'United States' },
+        { city: 'Tallinn', country: 'Estonia' },
+        { city: 'Ankara', country: 'Türkiye' },
+      ],
+    },
+    blog: {
+      label: 'Blog',
+      title: 'Yazılar & fikirler',
+      subtitle: 'Yaratıcı süreç, AI içerik ve marka hikâyeleri üzerine notlar.',
+      empty: 'Henüz yayınlanmış yazı yok.',
+      notFound: 'Yazı bulunamadı.',
+      back: 'Tüm yazılara dön',
+      footerLink: 'Blog',
+    },
+    lang: {
+      label: 'Dil',
+      soon: 'Yakında',
+    },
+  },
+  en: {
+    nav: {
+      work: 'Our Work',
+      services: 'Services',
+      about: 'About',
+      contact: 'Contact',
+      cta: "Let's create",
+    },
+    hero: {
+      label: 'AI Content Agency',
+      titleBefore: 'Turning ideas into',
+      titleAccent: 'stories worth watching.',
+      titleAfter: '',
+      description: 'AI-powered films and creative video content for your brand.',
+      explore: 'Explore our work',
+      showreel: 'Watch showreel',
+      strip: ['AI Commercials', 'Product Videos', 'Social Content'],
+    },
+    portfolio: {
+      label: 'Our Work',
+      title: 'Featured Work',
+      subtitle: 'AI-powered stories. Made to stand out.',
+      viewAll: 'View all videos',
+      shortTitle: 'Short-form stories',
+      filmTitle: 'Cinematic films',
+    },
+    services: {
+      label: 'Services',
+      title: 'What We Do',
+      items: [
+        {
+          title: 'AI Commercials',
+          description:
+            'Cinematic brand films crafted with generative AI — from concept to final cut, built to stop the scroll and stick in memory.',
+        },
+        {
+          title: 'Product Videos',
+          description:
+            'Product stories that feel premium. We stage, light, and animate your goods into films that sell without saying too much.',
+        },
+        {
+          title: 'Social Content',
+          description:
+            'Short-form series engineered for platforms. Fast iterations, strong hooks, and a visual language that stays on-brand.',
+        },
+      ],
+    },
+    feedback: {
+      label: 'Client Feedback',
+      titleBefore: 'Great stories. Even better',
+      titleAccent: 'partnerships.',
+      subtitle: 'A few words about the creative process.',
+      caption: 'Real client voices · Names used with permission for preview',
+    },
+    cta: {
+      label: "Let's Talk",
+      title: "Have an idea? Let's make it worth watching.",
+      button: 'Tell us about it',
+    },
+    footer: {
+      tagline: 'Creative ideas. Compelling videos.',
+    },
+    about: {
+      label: 'About',
+      title: 'Storytellers with',
+      titleAccent: 'business sense.',
+      paragraphs: [
+        'Tenidy brings together experience in marketing, social media, e-commerce, and software dating back to 2014. Our journey began in Türkiye and now continues with offices in Estonia and the United States, combining creative thinking with a practical understanding of business.',
+        'As AI tools opened up new creative possibilities, we made AI-powered video and visual content a central part of our work. Today, we create commercials, product visuals, cinematic stories, and social content tailored to each brand’s personality, audience, and goals. We also help businesses establish, grow, and manage their social media presence.',
+        'Years of working across digital industries have taught us how to earn attention and make it count. We think carefully about the opening hook, the story, the pacing, and what makes someone want to keep watching or share. We bring that thinking to every project, alongside a willingness to experiment and explore fresh ideas.',
+        'We’re a small, hands-on team that values clear communication and thoughtful collaboration. We take the time to understand your business, bring ideas to the table, and stay involved from the first conversation to the final edit. Whether you’re launching something new or giving your brand fresh energy, we’d love to help you create something people remember.',
+      ],
+      stats: [
+        { value: '2014', label: 'Since' },
+        { value: '3', label: 'Countries' },
+        { value: 'AI', label: 'Focus' },
+      ],
+      cta: "Let's work together",
+    },
+    contact: {
+      label: 'Contact',
+      title: 'Good ideas start with a',
+      titleAccent: 'conversation.',
+      subtitle:
+        "Tell us what you have in mind. We'll help you shape the next step.",
+      whatsappLabel: 'WhatsApp',
+      whatsappCta: 'Message on WhatsApp',
+      emailLabel: 'Email',
+      email: 'hello@tenidy.com',
+      formTitle: 'Tell us about your project',
+      formSubtitle: 'A few details are enough to get started.',
+      name: 'Full name',
+      namePlaceholder: 'Your name',
+      company: 'Company',
+      companyOptional: 'Company (optional)',
+      companyPlaceholder: 'Company or brand',
+      emailField: 'Email',
+      emailPlaceholder: 'you@company.com',
+      projectType: 'What can we help with?',
+      projectTypes: ['AI Video', 'Visual Content', 'Social Media'],
+      message: 'Your idea',
+      messagePlaceholder: 'What would you like to create?',
+      send: 'Send enquiry',
+      privacy: 'We’ll only use your details to respond to your enquiry.',
+      hqLabel: 'Headquarters',
+      hqSubtitle: 'Three countries. One team.',
+      offices: [
+        { city: 'Wyoming', country: 'United States' },
+        { city: 'Tallinn', country: 'Estonia' },
+        { city: 'Ankara', country: 'Türkiye' },
+      ],
+    },
+    blog: {
+      label: 'Blog',
+      title: 'Notes & ideas',
+      subtitle: 'Thoughts on creative process, AI content and brand storytelling.',
+      empty: 'No published posts yet.',
+      notFound: 'Post not found.',
+      back: 'Back to all posts',
+      footerLink: 'Blog',
+    },
+    lang: {
+      label: 'Language',
+      soon: 'Soon',
+    },
+  },
+}
