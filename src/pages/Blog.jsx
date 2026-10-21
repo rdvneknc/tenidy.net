@@ -50,7 +50,7 @@ export default function Blog() {
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center text-sm text-muted">
-                        tenidy
+                        ekiworks
                       </div>
                     )}
                   </div>

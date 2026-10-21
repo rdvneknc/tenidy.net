@@ -22,6 +22,7 @@ import {
   updateVideo,
 } from '../lib/firestore'
 import { mediaSrc } from '../lib/media'
+import { resolveWorkThumbnail } from '../lib/videoPreview'
 import LocalImageField from './LocalImageField'
 
 const VIDEO_TYPES = ['Cinematic', 'Commercial', 'Product', 'Social', 'Narrative', 'Other']
@@ -60,17 +61,22 @@ function SortableRow({ video, onEdit, onDelete, onToggleHome }) {
       </td>
       <td className="px-2 py-3">
         <div className="flex items-center gap-3">
-          {video.thumbnail ? (
-            <img
-              src={mediaSrc(video.thumbnail)}
-              alt=""
-              className="h-12 w-10 rounded object-cover md:h-14 md:w-20"
-            />
-          ) : (
-            <div className="flex h-12 w-10 items-center justify-center rounded bg-white/5 text-[10px] text-muted md:h-14 md:w-20">
-              —
-            </div>
-          )}
+          {(() => {
+            const thumb = video.thumbnail
+              ? mediaSrc(video.thumbnail)
+              : resolveWorkThumbnail(video)
+            return thumb ? (
+              <img
+                src={thumb}
+                alt=""
+                className="h-12 w-10 rounded object-cover md:h-14 md:w-20"
+              />
+            ) : (
+              <div className="flex h-12 w-10 items-center justify-center rounded bg-white/5 text-[10px] text-muted md:h-14 md:w-20">
+                —
+              </div>
+            )
+          })()}
           <div>
             <p className="text-sm font-semibold">{video.title}</p>
             <p className="text-xs text-muted">{video.videoType}</p>
@@ -224,7 +230,7 @@ export default function AdminVideos() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Videos</h1>
           <p className="mt-1 text-sm text-muted">
-            Thumbnail optional — add from local via public/media
+            Thumbnail optional — YouTube/Vimeo cover used if empty
           </p>
         </div>
         <button
@@ -381,7 +387,7 @@ export default function AdminVideos() {
                 label="Thumbnail (optional)"
                 value={form.thumbnail}
                 onChange={(thumbnail) => setForm({ ...form, thumbnail })}
-                warningText="Görsel şart değil; canlıdan video kaydedebilirsiniz. Lokalden public/media klasörüne görsel eklemeyi unutmayın."
+                warningText="Boş bırakırsanız YouTube/Vimeo kapak görseli kullanılır. İsterseniz localden public/media ile özel thumbnail ekleyin."
               />
               <label className="flex items-center gap-2 text-sm">
                 <input

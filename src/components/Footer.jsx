@@ -49,8 +49,8 @@ export default function Footer() {
   const { t } = useLanguage()
 
   const links = [
-    { label: t.nav.work, to: '/#products' },
-    { label: t.nav.services, to: '/#services' },
+    { label: t.nav.work, to: '/work' },
+    { label: t.nav.services, to: '/services' },
     { label: t.nav.about, to: '/about' },
     { label: t.nav.contact, to: '/contact' },
     { label: t.blog.footerLink, to: '/blog' },
@@ -61,7 +61,7 @@ export default function Footer() {
       <div className="container-pad flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <Link to="/" className="text-xl font-bold tracking-tight">
-            tenidy
+            ekiworks
           </Link>
           <p className="mt-1.5 text-sm font-normal text-muted">{t.footer.tagline}</p>
         </div>

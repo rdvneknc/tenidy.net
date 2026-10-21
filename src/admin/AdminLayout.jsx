@@ -44,7 +44,7 @@ export default function AdminLayout() {
           <div className="flex items-center gap-2">
             <Clapperboard className="size-5 text-lime" />
             <div>
-              <p className="text-sm font-bold tracking-tight">tenidy</p>
+              <p className="text-sm font-bold tracking-tight">ekiworks</p>
               <p className="text-[10px] tracking-[0.16em] text-muted uppercase">Admin</p>
             </div>
           </div>

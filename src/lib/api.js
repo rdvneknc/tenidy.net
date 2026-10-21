@@ -1,7 +1,7 @@
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
 function getToken() {
-  return localStorage.getItem('tenidy-admin-token')
+  return localStorage.getItem('ekiworks-admin-token')
 }
 
 export async function api(path, options = {}) {

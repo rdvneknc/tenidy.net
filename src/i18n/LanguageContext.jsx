@@ -5,12 +5,12 @@ const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
   const [locale, setLocale] = useState(() => {
-    const saved = localStorage.getItem('tenidy-locale')
+    const saved = localStorage.getItem('ekiworks-locale')
     return saved && translations[saved] ? saved : 'en'
   })
 
   useEffect(() => {
-    localStorage.setItem('tenidy-locale', locale)
+    localStorage.setItem('ekiworks-locale', locale)
     document.documentElement.lang = locale
   }, [locale])
 

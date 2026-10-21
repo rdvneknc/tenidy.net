@@ -69,7 +69,7 @@ export default function AdminLogin() {
         <div className="mb-6 flex items-center gap-2">
           <Clapperboard className="size-5 text-lime" />
           <div>
-            <p className="font-bold">tenidy admin</p>
+            <p className="font-bold">ekiworks admin</p>
             <p className="text-xs text-muted">Only allowlisted emails</p>
           </div>
         </div>

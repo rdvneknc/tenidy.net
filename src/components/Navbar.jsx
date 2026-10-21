@@ -10,8 +10,8 @@ export default function Navbar() {
   const { t } = useLanguage()
 
   const links = [
-    { label: t.nav.work, to: '/#products' },
-    { label: t.nav.services, to: '/#services' },
+    { label: t.nav.work, to: '/work' },
+    { label: t.nav.services, to: '/services' },
     { label: t.nav.about, to: '/about' },
     { label: t.nav.contact, to: '/contact' },
   ].sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
@@ -20,7 +20,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-line/80 bg-ink/80 backdrop-blur-md">
       <nav className="container-pad flex h-14 items-center justify-between md:h-16">
         <Link to="/" className="text-xl font-bold tracking-tight md:text-[22px]">
-          tenidy
+          ekiworks
         </Link>
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 md:flex">

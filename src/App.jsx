@@ -5,6 +5,8 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Work from './pages/Work'
+import ServicesPage from './pages/Services'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import AdminLayout from './admin/AdminLayout'
@@ -22,6 +24,8 @@ export default function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/services" element={<ServicesPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />

@@ -11,7 +11,7 @@ const uploadsDir = path.join(__dirname, 'uploads')
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true })
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true })
 
-const db = new Database(path.join(dataDir, 'tenidy.db'))
+const db = new Database(path.join(dataDir, 'ekiworks.db'))
 db.pragma('journal_mode = WAL')
 
 db.exec(`
@@ -62,7 +62,7 @@ db.exec(`
 
 const adminCount = db.prepare('SELECT COUNT(*) as c FROM admins').get().c
 if (adminCount === 0) {
-  const password = process.env.ADMIN_PASSWORD || 'tenidy2026'
+  const password = process.env.ADMIN_PASSWORD || 'ekiworks2026'
   const hash = bcrypt.hashSync(password, 10)
   db.prepare('INSERT INTO admins (username, password_hash) VALUES (?, ?)').run('admin', hash)
   console.log('Default admin created → username: admin / password:', password)

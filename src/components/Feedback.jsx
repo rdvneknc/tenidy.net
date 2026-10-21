@@ -20,7 +20,7 @@ const testimonials = [
     company: "B'stop",
   },
   {
-    quote: 'Explaining eSIM used to feel dry. Tenidy made it simple, visual, and trustworthy — our launch creatives finally clicked.',
+    quote: 'Explaining eSIM used to feel dry. Ekiworks made it simple, visual, and trustworthy — our launch creatives finally clicked.',
     rating: 5,
     category: 'Product Video',
     name: 'Sophie Laurent',
@@ -60,7 +60,7 @@ const testimonials = [
     company: 'Northline Apparel',
   },
   {
-    quote: 'We needed a product film fast without looking cheap. Tenidy delivered something that could sit next to any luxury campaign.',
+    quote: 'We needed a product film fast without looking cheap. Ekiworks delivered something that could sit next to any luxury campaign.',
     rating: 5,
     category: 'Product Video',
     name: 'Jonas Meier',
@@ -93,19 +93,19 @@ function Stars({ rating }) {
   )
 }
 
-function FeedbackCard({ item, featured = false }) {
+function FeedbackCard({ item, featured = false, className = '' }) {
   return (
     <article
-      className={`relative flex h-[340px] flex-col rounded-2xl border border-white/10 bg-[#121212] p-5 md:h-[360px] md:p-6 ${
-        featured ? 'before:absolute before:top-0 before:left-5 before:h-[2px] before:w-14 before:rounded-full before:bg-lime' : ''
-      }`}
+      className={`relative flex h-[320px] flex-col rounded-2xl border border-white/10 bg-[#121212] p-5 md:h-[360px] md:p-6 ${
+        featured
+          ? 'before:absolute before:top-0 before:left-5 before:h-[2px] before:w-14 before:rounded-full before:bg-lime'
+          : ''
+      } ${className}`}
     >
       <div className="mb-4 flex shrink-0 items-start justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Stars rating={item.rating} />
-          <span className="text-xs font-medium text-white/70">
-            {item.rating.toFixed(1)} / 5
-          </span>
+          <span className="text-xs font-medium text-white/70">{item.rating.toFixed(1)} / 5</span>
         </div>
         <span className="shrink-0 rounded-full border border-white/15 px-2.5 py-0.5 text-[9px] font-medium tracking-[0.14em] text-muted uppercase">
           Verified
@@ -170,7 +170,7 @@ export default function Feedback() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="hidden items-center gap-2 self-start sm:self-auto md:flex">
             <button
               type="button"
               aria-label="Previous testimonials"
@@ -189,8 +189,26 @@ export default function Feedback() {
             </button>
           </div>
         </div>
+      </div>
 
-        <div className="grid gap-4 md:grid-cols-3 md:gap-5">
+      {/* Mobile: horizontal swipe */}
+      <div className="md:hidden">
+        <div className="scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto px-[1.5rem] pb-1">
+          {testimonials.map((item, i) => (
+            <FeedbackCard
+              key={item.name}
+              item={item}
+              featured={i === 0}
+              className="w-[min(85vw,320px)] shrink-0 snap-center"
+            />
+          ))}
+        </div>
+        <p className="container-pad mt-5 text-[11px] font-normal text-muted">{t.feedback.caption}</p>
+      </div>
+
+      {/* Desktop: paged grid */}
+      <div className="container-pad hidden md:block">
+        <div className="grid gap-5 md:grid-cols-3">
           {pages[page].map((item, i) => (
             <FeedbackCard key={`${item.name}-${page}`} item={item} featured={i === 0} />
           ))}

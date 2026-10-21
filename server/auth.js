@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import { db } from './db.js'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'tenidy-dev-secret-change-me'
+const JWT_SECRET = process.env.JWT_SECRET || 'ekiworks-dev-secret-change-me'
 
 export function signToken(admin) {
   return jwt.sign({ id: admin.id, username: admin.username }, JWT_SECRET, { expiresIn: '7d' })

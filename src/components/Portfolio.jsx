@@ -1,62 +1,9 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
-import { ArrowUpRight, ChevronLeft, ChevronRight, Play } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { listVideos } from '../lib/firestore'
-
-function WorkCard({ work, size }) {
-  const isVertical = size === 'vertical'
-
-  return (
-    <a
-      href={work.videoUrl}
-      target="_blank"
-      rel="noreferrer"
-      className={`group shrink-0 cursor-pointer rounded-2xl border border-white/12 bg-white/[0.02] p-2 transition duration-300 hover:border-white/25 hover:bg-white/[0.04] ${
-        isVertical
-          ? 'w-[152px] sm:w-[168px] md:w-[184px]'
-          : 'w-[260px] sm:w-[300px] md:w-[340px]'
-      }`}
-    >
-      <div
-        className={`relative overflow-hidden rounded-xl bg-[#1a1a1a] ${
-          isVertical ? 'aspect-[9/16]' : 'aspect-video'
-        }`}
-      >
-        {work.thumbnail ? (
-          <img
-            src={work.thumbnail}
-            alt={work.title}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-            loading="lazy"
-            draggable={false}
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-xs text-muted">
-            {work.title}
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-
-        <span className="absolute bottom-2.5 left-2.5 inline-flex size-7 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white backdrop-blur-sm transition group-hover:border-lime/60 group-hover:bg-lime group-hover:text-ink">
-          <Play className="size-3 fill-current" />
-        </span>
-
-        {work.duration && (
-          <span className="absolute right-2.5 bottom-2.5 rounded-md bg-black/55 px-1.5 py-0.5 text-[10px] font-medium text-white/90 backdrop-blur-sm">
-            {work.duration}
-          </span>
-        )}
-      </div>
-
-      <div className="mt-2 px-0.5 pb-0.5">
-        <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
-        <p className="mt-0.5 truncate text-[10px] font-medium tracking-[0.16em] text-muted uppercase">
-          {work.videoType || work.category}
-        </p>
-      </div>
-    </a>
-  )
-}
+import WorkCard from './WorkCard'
 
 function MediaRow({ title, badge, items, size }) {
   const scrollerRef = useRef(null)
@@ -192,13 +139,13 @@ export default function Portfolio() {
             </p>
           </div>
 
-          <a
-            href="#products"
+          <Link
+            to="/work"
             className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full border border-white/30 px-4 py-2 text-sm font-medium text-white transition hover:border-lime hover:text-lime"
           >
             {t.portfolio.viewAll}
             <ArrowUpRight className="size-3.5" strokeWidth={2.25} />
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col gap-6 md:gap-7">
