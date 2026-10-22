@@ -49,38 +49,38 @@ export default function Footer() {
   const { t } = useLanguage()
 
   const links = [
-    { label: t.nav.work, to: '/work' },
-    { label: t.nav.services, to: '/services' },
     { label: t.nav.about, to: '/about' },
     { label: t.nav.contact, to: '/contact' },
     { label: t.blog.footerLink, to: '/blog' },
-  ].sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
+  ]
 
   return (
-    <footer className="border-t border-line py-8 md:py-10">
-      <div className="container-pad flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
+    <footer className="border-t border-line py-10">
+      <div className="container-pad flex flex-col items-center gap-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="flex max-w-sm flex-col items-center md:items-start">
           <Link to="/" className="text-xl font-bold tracking-tight">
             ekiworks
           </Link>
           <p className="mt-1.5 text-sm font-normal text-muted">{t.footer.tagline}</p>
         </div>
 
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-10">
-          <ul className="flex items-center gap-8">
-            {links.map((link) => (
-              <li key={link.to}>
-                <Link
-                  to={link.to}
-                  className="text-sm font-medium text-white/75 transition hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col items-center gap-5 md:flex-row md:items-center md:gap-8">
+          <nav aria-label="Footer">
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {links.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="text-sm font-medium text-white/75 transition hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center justify-center gap-3">
             {socials.map((social) => {
               const Icon = social.icon
               return (

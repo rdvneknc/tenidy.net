@@ -7,7 +7,7 @@ const testimonials = [
     quote: 'Our trailer finally looks like a real game cinematic. Sharp pacing, strong mood, and a finish that players actually share.',
     rating: 5,
     category: 'Game Trailer',
-    name: 'Mehmet Ekinci',
+    name: 'Aytaç Coşkun',
     role: 'Creative Director',
     company: 'Limon Games',
   },
