@@ -128,7 +128,7 @@ export default function Portfolio() {
   const landscapeWorks = videos.filter((v) => v.aspectRatio === '16:9')
 
   return (
-    <section id="products" className="border-b border-line py-9 md:py-12">
+    <section id="products" className="border-b border-line bg-ink-soft py-9 md:py-12">
       <div className="container-pad">
         <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xl">

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { Clapperboard } from 'lucide-react'
+import Seo from '../components/Seo'
 import { useAdminAuth } from './AdminAuth'
 
 function GoogleIcon({ className }) {
@@ -65,6 +66,7 @@ export default function AdminLogin() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink px-4">
+      <Seo title="Admin Login" description="ekiworks admin" path="/admin/login" noindex />
       <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-7">
         <div className="mb-6 flex items-center gap-2">
           <Clapperboard className="size-5 text-lime" />

@@ -3,6 +3,7 @@ import { ArrowUpRight, Mail, MapPin, MessageCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
 import { createMessage } from '../lib/firestore'
+import Seo from '../components/Seo'
 
 const WHATSAPP = '+372 5354 6911'
 const WHATSAPP_LINK = 'https://wa.me/37253546911'
@@ -44,6 +45,7 @@ export default function Contact() {
 
   return (
     <section className="flex min-h-[calc(100dvh-3.5rem)] flex-col border-b border-line bg-[radial-gradient(circle_at_82%_18%,rgba(212,248,103,0.035),transparent_34%)] md:min-h-[calc(100dvh-4rem)]">
+      <Seo title={t.seo.contact.title} description={t.seo.contact.description} path="/contact" />
       <div className="container-pad flex flex-1 flex-col justify-between py-9 md:py-11">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-12">
           <motion.div

@@ -156,7 +156,6 @@ export default function AdminVideos() {
   }, [videos, filterAspect, filterType, filterHome, query])
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
-  const filtersActive = !!(filterAspect || filterType || filterHome || query)
 
   const openCreate = () => {
     setEditing(null)
@@ -208,13 +207,24 @@ export default function AdminVideos() {
   }
 
   const onDragEnd = async (event) => {
-    if (filtersActive) return
     const { active, over } = event
     if (!over || active.id === over.id) return
 
-    const oldIndex = videos.findIndex((v) => v.id === active.id)
-    const newIndex = videos.findIndex((v) => v.id === over.id)
-    const next = arrayMove(videos, oldIndex, newIndex)
+    const oldFilteredIndex = filtered.findIndex((v) => v.id === active.id)
+    const newFilteredIndex = filtered.findIndex((v) => v.id === over.id)
+    if (oldFilteredIndex < 0 || newFilteredIndex < 0) return
+
+    const reorderedFiltered = arrayMove(filtered, oldFilteredIndex, newFilteredIndex)
+
+    // Keep non-matching videos in place; reshuffle only the filtered slots
+    const next = [...videos]
+    const slotIndexes = videos
+      .map((v, i) => (filtered.some((f) => f.id === v.id) ? i : -1))
+      .filter((i) => i >= 0)
+    slotIndexes.forEach((slot, i) => {
+      next[slot] = reorderedFiltered[i]
+    })
+
     setVideos(next)
     try {
       await reorderVideos(next.map((v) => v.id))

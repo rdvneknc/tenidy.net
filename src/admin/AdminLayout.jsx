@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { Clapperboard, FileText, LayoutDashboard, LogOut, Mail, Video } from 'lucide-react'
 import { db } from '../lib/firebase'
+import Seo from '../components/Seo'
 import { useAdminAuth } from './AdminAuth'
 
 const nav = [
@@ -39,6 +40,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <Seo title="Admin" description="ekiworks admin" path="/admin" noindex />
       <aside className="fixed inset-y-0 left-0 z-40 flex w-56 flex-col border-r border-white/10 bg-[#0f0f0f]">
         <div className="border-b border-white/10 px-5 py-5">
           <div className="flex items-center gap-2">

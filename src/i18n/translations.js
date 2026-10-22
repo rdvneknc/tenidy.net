@@ -15,6 +15,36 @@ export const translations = {
       contact: 'İletişim',
       cta: 'Bize ulaşın',
     },
+    seo: {
+      home: {
+        title: 'AI İçerik Ajansı',
+        description:
+          'ekiworks — markalar, oyunlar ve uygulamalar için yapay zeka destekli filmler, reklamlar ve yaratıcı video içerikleri.',
+      },
+      work: {
+        title: 'İşlerimiz',
+        description:
+          'ekiworks portföyü — kısa format ve sinematik AI video işlerimizi keşfedin.',
+      },
+      services: {
+        title: 'Hizmetler',
+        description:
+          'Oyun ve uygulama reklamları, AI reklamlar, UGC, sosyal medya içerikleri, görseller ve hesap yönetimi.',
+      },
+      about: {
+        title: 'Hakkımızda',
+        description:
+          'ekiworks hakkında — 2014’ten beri pazarlama ve yaratıcı üretim deneyimi; AI video ve sosyal medya.',
+      },
+      contact: {
+        title: 'İletişim',
+        description: 'ekiworks ile iletişime geçin — projenizi anlatın, birlikte başlayalım.',
+      },
+      blog: {
+        title: 'Blog',
+        description: 'Yaratıcı süreç, AI içerik ve marka hikâyeleri üzerine yazılar.',
+      },
+    },
     hero: {
       label: 'Yapay Zeka İçerik Ajansı',
       titleBefore: 'Fikirleri',
@@ -219,6 +249,36 @@ export const translations = {
       about: 'About',
       contact: 'Contact',
       cta: 'Get in touch',
+    },
+    seo: {
+      home: {
+        title: 'AI Content Agency',
+        description:
+          'ekiworks — AI-powered films, commercials, and creative video content for brands, games, and apps.',
+      },
+      work: {
+        title: 'Our Work',
+        description:
+          'Explore the ekiworks portfolio — short-form and cinematic AI video projects.',
+      },
+      services: {
+        title: 'Services',
+        description:
+          'Game and app ads, AI commercials, UGC, social content, product imagery, and social media management.',
+      },
+      about: {
+        title: 'About',
+        description:
+          'About ekiworks — marketing and creative experience since 2014; AI video and social media.',
+      },
+      contact: {
+        title: 'Contact',
+        description: 'Get in touch with ekiworks — tell us about your project and let’s start.',
+      },
+      blog: {
+        title: 'Blog',
+        description: 'Notes on creative process, AI content, and brand storytelling.',
+      },
     },
     hero: {
       label: 'AI Content Agency',

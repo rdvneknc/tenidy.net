@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { listVideos } from '../lib/firestore'
 import { useLanguage } from '../i18n/LanguageContext'
 import WorkCard from '../components/WorkCard'
+import Seo from '../components/Seo'
 
 function VideoGrid({ items, size, columns }) {
   if (!items.length) return null
@@ -59,6 +60,7 @@ export default function Work() {
 
   return (
     <section className="border-b border-line bg-[radial-gradient(circle_at_18%_12%,rgba(212,248,103,0.04),transparent_36%)]">
+      <Seo title={t.seo.work.title} description={t.seo.work.description} path="/work" />
       <div className="container-pad py-14 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

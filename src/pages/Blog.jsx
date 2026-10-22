@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { listPosts } from '../lib/firestore'
 import { useLanguage } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 export default function Blog() {
   const { t } = useLanguage()
@@ -18,6 +19,7 @@ export default function Blog() {
 
   return (
     <section className="border-b border-line">
+      <Seo title={t.seo.blog.title} description={t.seo.blog.description} path="/blog" />
       <div className="container-pad py-14 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

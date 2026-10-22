@@ -156,7 +156,7 @@ export default function Feedback() {
   }
 
   return (
-    <section id="feedback" className="border-b border-line py-12 md:py-16">
+    <section id="feedback" className="border-b border-line bg-ink-soft py-12 md:py-16">
       <div className="container-pad">
         <div className="mb-8 flex flex-col gap-5 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">

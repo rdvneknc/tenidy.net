@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 export default function About() {
   const { t } = useLanguage()
@@ -9,6 +10,7 @@ export default function About() {
 
   return (
     <section className="border-b border-line">
+      <Seo title={t.seo.about.title} description={t.seo.about.description} path="/about" />
       <div className="container-pad py-14 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 18 }}

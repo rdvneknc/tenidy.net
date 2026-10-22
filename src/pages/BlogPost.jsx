@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { getPostBySlug } from '../lib/firestore'
 import { useLanguage } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -22,6 +23,7 @@ export default function BlogPost() {
   if (error) {
     return (
       <section className="container-pad py-20">
+        <Seo title={t.blog.notFound} description={t.seo.blog.description} path={`/blog/${slug}`} noindex />
         <p className="text-muted">{t.blog.notFound}</p>
         <Link to="/blog" className="mt-4 inline-flex items-center gap-2 text-sm text-lime">
           <ArrowLeft className="size-4" />
@@ -41,6 +43,13 @@ export default function BlogPost() {
 
   return (
     <article className="border-b border-line">
+      <Seo
+        title={post.title}
+        description={post.excerpt || t.seo.blog.description}
+        path={`/blog/${post.slug}`}
+        image={post.coverImage || '/hero-banner.jpg'}
+        type="article"
+      />
       <div className="container-pad py-12 md:py-16">
         <Link
           to="/blog"

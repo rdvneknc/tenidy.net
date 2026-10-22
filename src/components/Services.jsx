@@ -25,7 +25,7 @@ export default function Services() {
   const items = t.servicesPage.items
 
   return (
-    <section id="services" className="border-b border-line py-10 md:py-16">
+    <section id="services" className="border-b border-line bg-ink py-10 md:py-16">
       <div className="container-pad">
         <div className="mb-6 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext'
 import ServiceModal from '../components/ServiceModal'
+import Seo from '../components/Seo'
 
 const ICONS = {
   'game-app-ads': Gamepad2,
@@ -52,6 +53,7 @@ export default function ServicesPage() {
 
   return (
     <section className="border-b border-line">
+      <Seo title={t.seo.services.title} description={t.seo.services.description} path="/services" />
       <div className="container-pad py-12 md:py-16 lg:py-20">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
           <motion.div
