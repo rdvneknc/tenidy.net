@@ -124,8 +124,12 @@ export default function Portfolio() {
       .catch(console.error)
   }, [])
 
-  const verticalWorks = videos.filter((v) => v.aspectRatio === '9:16')
-  const landscapeWorks = videos.filter((v) => v.aspectRatio === '16:9')
+  const verticalWorks = videos.filter(
+    (v) => v.mediaType !== 'image' && v.aspectRatio === '9:16',
+  )
+  const landscapeWorks = videos.filter(
+    (v) => v.mediaType !== 'image' && v.aspectRatio === '16:9',
+  )
 
   return (
     <section id="products" className="border-b border-line bg-ink-soft py-9 md:py-12">

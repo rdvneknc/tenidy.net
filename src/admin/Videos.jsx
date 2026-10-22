@@ -25,14 +25,13 @@ import { mediaSrc } from '../lib/media'
 import { resolveWorkThumbnail } from '../lib/videoPreview'
 import LocalImageField from './LocalImageField'
 
-const VIDEO_TYPES = ['Cinematic', 'Commercial', 'Product', 'Social', 'Narrative', 'Other']
 const emptyForm = {
   title: '',
   duration: '',
   videoUrl: '',
   thumbnail: '',
   aspectRatio: '9:16',
-  videoType: 'Cinematic',
+  mediaType: 'video',
   showOnHome: true,
 }
 
@@ -46,6 +45,8 @@ function SortableRow({ video, onEdit, onDelete, onToggleHome }) {
     transition,
     opacity: isDragging ? 0.7 : 1,
   }
+
+  const isImage = video.mediaType === 'image'
 
   return (
     <tr ref={setNodeRef} style={style} className="border-b border-white/8 hover:bg-white/[0.02]">
@@ -78,13 +79,17 @@ function SortableRow({ video, onEdit, onDelete, onToggleHome }) {
             )
           })()}
           <div>
-            <p className="text-sm font-semibold">{video.title}</p>
-            <p className="text-xs text-muted">{video.videoType}</p>
+            <p className="text-sm font-semibold">
+              {video.title || (isImage ? 'Untitled image' : 'Untitled')}
+            </p>
+            <p className="text-xs text-muted">{isImage ? 'Image' : 'Video'}</p>
           </div>
         </div>
       </td>
       <td className="hidden px-2 py-3 text-sm md:table-cell">{video.aspectRatio}</td>
-      <td className="hidden px-2 py-3 text-sm md:table-cell">{video.videoType}</td>
+      <td className="hidden px-2 py-3 text-sm capitalize md:table-cell">
+        {isImage ? 'Image' : 'Video'}
+      </td>
       <td className="px-2 py-3">
         <button
           type="button"
@@ -121,7 +126,7 @@ function SortableRow({ video, onEdit, onDelete, onToggleHome }) {
 export default function AdminVideos() {
   const [videos, setVideos] = useState([])
   const [filterAspect, setFilterAspect] = useState('')
-  const [filterType, setFilterType] = useState('')
+  const [filterMedia, setFilterMedia] = useState('')
   const [filterHome, setFilterHome] = useState('')
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -142,18 +147,16 @@ export default function AdminVideos() {
   const filtered = useMemo(() => {
     return videos.filter((v) => {
       if (filterAspect && v.aspectRatio !== filterAspect) return false
-      if (filterType && v.videoType !== filterType) return false
+      if (filterMedia && v.mediaType !== filterMedia) return false
       if (filterHome === '1' && !v.showOnHome) return false
       if (filterHome === '0' && v.showOnHome) return false
       if (query) {
         const q = query.toLowerCase()
-        if (!v.title.toLowerCase().includes(q) && !v.videoType.toLowerCase().includes(q)) {
-          return false
-        }
+        if (!v.title.toLowerCase().includes(q)) return false
       }
       return true
     })
-  }, [videos, filterAspect, filterType, filterHome, query])
+  }, [videos, filterAspect, filterMedia, filterHome, query])
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
 
@@ -169,10 +172,10 @@ export default function AdminVideos() {
     setForm({
       title: video.title,
       duration: video.duration || '',
-      videoUrl: video.videoUrl,
-      thumbnail: video.thumbnail,
+      videoUrl: video.videoUrl || '',
+      thumbnail: video.thumbnail || '',
       aspectRatio: video.aspectRatio,
-      videoType: video.videoType,
+      mediaType: video.mediaType === 'image' ? 'image' : 'video',
       showOnHome: video.showOnHome,
     })
     setError('')
@@ -184,8 +187,25 @@ export default function AdminVideos() {
     setSaving(true)
     setError('')
     try {
-      if (editing) await updateVideo(editing.id, form)
-      else await createVideo(form)
+      const isImage = form.mediaType === 'image'
+      if (!isImage && !form.title?.trim()) {
+        throw new Error('Title is required')
+      }
+      if (isImage && !form.thumbnail?.trim()) {
+        throw new Error('Image requires a file / path under public/media')
+      }
+      if (!isImage && !form.videoUrl?.trim()) {
+        throw new Error('Video link is required')
+      }
+      const payload = {
+        ...form,
+        title: isImage ? '' : form.title.trim(),
+        videoType: '',
+        duration: isImage ? '' : form.duration,
+        videoUrl: isImage ? '' : form.videoUrl,
+      }
+      if (editing) await updateVideo(editing.id, payload)
+      else await createVideo(payload)
       setOpen(false)
       await load()
     } catch (err) {
@@ -196,7 +216,7 @@ export default function AdminVideos() {
   }
 
   const onDelete = async (video) => {
-    if (!confirm(`Delete “${video.title}”?`)) return
+    if (!confirm(`Delete “${video.title || (video.mediaType === 'image' ? 'image' : 'item')}”?`)) return
     await deleteVideo(video.id)
     await load()
   }
@@ -216,7 +236,6 @@ export default function AdminVideos() {
 
     const reorderedFiltered = arrayMove(filtered, oldFilteredIndex, newFilteredIndex)
 
-    // Keep non-matching videos in place; reshuffle only the filtered slots
     const next = [...videos]
     const slotIndexes = videos
       .map((v, i) => (filtered.some((f) => f.id === v.id) ? i : -1))
@@ -234,13 +253,15 @@ export default function AdminVideos() {
     }
   }
 
+  const isImage = form.mediaType === 'image'
+
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Videos</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Media</h1>
           <p className="mt-1 text-sm text-muted">
-            Thumbnail optional — YouTube/Vimeo cover used if empty
+            Videos and images — thumbnail optional for videos (YouTube/Vimeo cover used if empty)
           </p>
         </div>
         <button
@@ -249,7 +270,7 @@ export default function AdminVideos() {
           className="inline-flex items-center gap-2 rounded-xl bg-lime px-4 py-2.5 text-sm font-semibold text-ink"
         >
           <Plus className="size-4" />
-          Add video
+          Add media
         </button>
       </div>
 
@@ -270,16 +291,13 @@ export default function AdminVideos() {
           <option value="16:9">16:9</option>
         </select>
         <select
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
+          value={filterMedia}
+          onChange={(e) => setFilterMedia(e.target.value)}
           className="rounded-lg border border-white/10 bg-[#111] px-3 py-2 text-sm"
         >
-          <option value="">All types</option>
-          {VIDEO_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
+          <option value="">All media</option>
+          <option value="video">Videos</option>
+          <option value="image">Images</option>
         </select>
         <select
           value={filterHome}
@@ -298,7 +316,7 @@ export default function AdminVideos() {
             <thead className="bg-white/[0.03] text-xs tracking-wide text-muted uppercase">
               <tr>
                 <th className="px-2 py-3" />
-                <th className="px-2 py-3 font-medium">Video</th>
+                <th className="px-2 py-3 font-medium">Item</th>
                 <th className="hidden px-2 py-3 font-medium md:table-cell">Ratio</th>
                 <th className="hidden px-2 py-3 font-medium md:table-cell">Type</th>
                 <th className="px-2 py-3 font-medium">Home</th>
@@ -319,7 +337,7 @@ export default function AdminVideos() {
                 {!filtered.length && (
                   <tr>
                     <td colSpan={6} className="px-4 py-10 text-center text-sm text-muted">
-                      No videos found.
+                      No media found.
                     </td>
                   </tr>
                 )}
@@ -336,29 +354,31 @@ export default function AdminVideos() {
             className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-[#111] p-6"
           >
             <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-lg font-bold">{editing ? 'Edit video' : 'Add video'}</h2>
+              <h2 className="text-lg font-bold">{editing ? 'Edit media' : 'Add media'}</h2>
               <button type="button" onClick={() => setOpen(false)} className="text-white/50">
                 <X className="size-5" />
               </button>
             </div>
 
             <div className="space-y-3">
-              <Field label="Title">
-                <input
-                  required
-                  value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
-                  className="field"
-                />
-              </Field>
               <div className="grid grid-cols-2 gap-3">
-                <Field label="Duration">
-                  <input
-                    value={form.duration}
-                    onChange={(e) => setForm({ ...form, duration: e.target.value })}
+                <Field label="Media type">
+                  <select
+                    value={form.mediaType}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        mediaType: e.target.value,
+                        title: e.target.value === 'image' ? '' : form.title,
+                        duration: e.target.value === 'image' ? '' : form.duration,
+                        videoUrl: e.target.value === 'image' ? '' : form.videoUrl,
+                      })
+                    }
                     className="field"
-                    placeholder="0:28"
-                  />
+                  >
+                    <option value="video">Video</option>
+                    <option value="image">Image</option>
+                  </select>
                 </Field>
                 <Field label="Aspect ratio">
                   <select
@@ -371,34 +391,52 @@ export default function AdminVideos() {
                   </select>
                 </Field>
               </div>
-              <Field label="Video type">
-                <select
-                  value={form.videoType}
-                  onChange={(e) => setForm({ ...form, videoType: e.target.value })}
-                  className="field"
-                >
-                  {VIDEO_TYPES.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Field label="Video link (URL)">
-                <input
-                  required
-                  value={form.videoUrl}
-                  onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
-                  className="field"
-                  placeholder="https://…"
-                />
-              </Field>
+
+              {!isImage && (
+                <Field label="Title">
+                  <input
+                    required
+                    value={form.title}
+                    onChange={(e) => setForm({ ...form, title: e.target.value })}
+                    className="field"
+                  />
+                </Field>
+              )}
+
+              {!isImage && (
+                <Field label="Duration">
+                  <input
+                    value={form.duration}
+                    onChange={(e) => setForm({ ...form, duration: e.target.value })}
+                    className="field"
+                    placeholder="0:28"
+                  />
+                </Field>
+              )}
+
+              {!isImage && (
+                <Field label="Video link (URL)">
+                  <input
+                    required={!isImage}
+                    value={form.videoUrl}
+                    onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
+                    className="field"
+                    placeholder="https://…"
+                  />
+                </Field>
+              )}
+
               <LocalImageField
-                label="Thumbnail (optional)"
+                label={isImage ? 'Image (required)' : 'Thumbnail (optional)'}
                 value={form.thumbnail}
                 onChange={(thumbnail) => setForm({ ...form, thumbnail })}
-                warningText="Boş bırakırsanız YouTube/Vimeo kapak görseli kullanılır. İsterseniz localden public/media ile özel thumbnail ekleyin."
+                warningText={
+                  isImage
+                    ? 'Görseli public/media altına ekleyin veya geliştirme ortamında yükleyin.'
+                    : 'Boş bırakırsanız YouTube/Vimeo kapak görseli kullanılır. İsterseniz localden public/media ile özel thumbnail ekleyin.'
+                }
               />
+
               <label className="flex items-center gap-2 text-sm">
                 <input
                   type="checkbox"
@@ -416,7 +454,7 @@ export default function AdminVideos() {
               disabled={saving}
               className="mt-5 w-full rounded-xl bg-lime py-2.5 text-sm font-semibold text-ink disabled:opacity-60"
             >
-              {saving ? 'Saving…' : 'Save video'}
+              {saving ? 'Saving…' : 'Save'}
             </button>
           </form>
         </div>

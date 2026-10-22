@@ -27,7 +27,8 @@ function mapVideo(id, data) {
     videoUrl: data.videoUrl || '',
     thumbnail: data.thumbnail || '',
     aspectRatio: data.aspectRatio || '9:16',
-    videoType: data.videoType || 'Other',
+    videoType: data.videoType || '',
+    mediaType: data.mediaType === 'image' ? 'image' : 'video',
     showOnHome: !!data.showOnHome,
     sortOrder: data.sortOrder ?? 0,
     createdAt: data.createdAt?.toDate?.()?.toISOString?.() || data.createdAt || null,
@@ -73,14 +74,16 @@ export async function listVideos({ homeOnly = false } = {}) {
 export async function createVideo(data) {
   const sortSnap = await getDocs(query(videosCol, orderBy('sortOrder', 'desc')))
   const maxOrder = sortSnap.docs[0]?.data()?.sortOrder ?? -1
+  const mediaType = data.mediaType === 'image' ? 'image' : 'video'
   const payload = {
-    title: data.title,
-    category: data.videoType,
-    duration: data.duration || '',
-    videoUrl: data.videoUrl,
+    title: mediaType === 'image' ? '' : data.title || '',
+    category: data.videoType || '',
+    duration: mediaType === 'image' ? '' : data.duration || '',
+    videoUrl: mediaType === 'image' ? '' : data.videoUrl || '',
     thumbnail: data.thumbnail || '',
     aspectRatio: data.aspectRatio,
-    videoType: data.videoType,
+    videoType: data.videoType || '',
+    mediaType,
     showOnHome: !!data.showOnHome,
     sortOrder: maxOrder + 1,
     createdAt: serverTimestamp(),
@@ -100,6 +103,9 @@ export async function updateVideo(id, data) {
   if (data.videoUrl !== undefined) payload.videoUrl = data.videoUrl
   if (data.thumbnail !== undefined) payload.thumbnail = data.thumbnail
   if (data.aspectRatio !== undefined) payload.aspectRatio = data.aspectRatio
+  if (data.mediaType !== undefined) {
+    payload.mediaType = data.mediaType === 'image' ? 'image' : 'video'
+  }
   if (data.videoType !== undefined) {
     payload.videoType = data.videoType
     payload.category = data.videoType

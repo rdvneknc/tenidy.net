@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Play } from 'lucide-react'
+import { Maximize2, Play } from 'lucide-react'
 import {
   fetchVimeoThumbnail,
   getVideoPreview,
@@ -11,7 +11,11 @@ import VideoModal from './VideoModal'
 export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }) {
   const isVertical = size === 'vertical'
   const isGrid = layout === 'grid'
-  const preview = useMemo(() => getVideoPreview(work.videoUrl), [work.videoUrl])
+  const isImage = work.mediaType === 'image'
+  const preview = useMemo(
+    () => (isImage ? null : getVideoPreview(work.videoUrl)),
+    [isImage, work.videoUrl],
+  )
   const initialThumb = useMemo(() => resolveWorkThumbnail(work), [work])
   const [thumb, setThumb] = useState(initialThumb)
   const [hover, setHover] = useState(false)
@@ -25,7 +29,7 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
   }, [initialThumb])
 
   useEffect(() => {
-    if (work.thumbnail) return undefined
+    if (isImage || work.thumbnail) return undefined
     const parsed = parseVideoId(work.videoUrl)
     if (parsed?.provider !== 'vimeo') return undefined
     let cancelled = false
@@ -35,17 +39,17 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
     return () => {
       cancelled = true
     }
-  }, [work.thumbnail, work.videoUrl])
+  }, [isImage, work.thumbnail, work.videoUrl])
 
   useEffect(() => {
-    if (hover && preview && !open) {
+    if (!isImage && hover && preview && !open) {
       timerRef.current = window.setTimeout(() => setShowPreview(true), 180)
     } else {
       window.clearTimeout(timerRef.current)
       setShowPreview(false)
     }
     return () => window.clearTimeout(timerRef.current)
-  }, [hover, preview, open])
+  }, [hover, preview, open, isImage])
 
   useEffect(() => {
     const el = videoRef.current
@@ -89,13 +93,14 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
           {thumb ? (
             <img
               src={thumb}
-              alt={work.title}
+              alt={work.title || ''}
               className={`h-full w-full object-cover transition duration-500 ${
                 showPreview ? 'opacity-0' : 'opacity-100 group-hover:scale-[1.02]'
               }`}
               loading="lazy"
               draggable={false}
               onError={(e) => {
+                if (isImage) return
                 const id = parseVideoId(work.videoUrl)?.id
                 if (id && !e.currentTarget.dataset.fallback) {
                   e.currentTarget.dataset.fallback = '1'
@@ -105,7 +110,7 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-[#1a1a1a] text-xs text-muted">
-              {work.title}
+              {work.title || '—'}
             </div>
           )}
 
@@ -143,10 +148,14 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
                 : 'opacity-100 group-hover:border-lime/60 group-hover:bg-lime group-hover:text-ink'
             }`}
           >
-            <Play className="size-3 fill-current" />
+            {isImage ? (
+              <Maximize2 className="size-3" />
+            ) : (
+              <Play className="size-3 fill-current" />
+            )}
           </span>
 
-          {work.duration && (
+          {!isImage && work.duration && (
             <span
               className={`absolute right-2.5 bottom-2.5 rounded-md bg-black/55 px-1.5 py-0.5 text-[10px] font-medium text-white/90 backdrop-blur-sm transition ${
                 showPreview ? 'opacity-0' : 'opacity-100'
@@ -157,12 +166,11 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
           )}
         </div>
 
-        <div className="mt-2 px-0.5 pb-0.5">
-          <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
-          <p className="mt-0.5 truncate text-[10px] font-medium tracking-[0.16em] text-muted uppercase">
-            {work.videoType || work.category}
-          </p>
-        </div>
+        {!isImage && work.title && (
+          <div className="mt-2 px-0.5 pb-0.5">
+            <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
+          </div>
+        )}
       </button>
 
       <VideoModal work={work} open={open} onClose={() => setOpen(false)} />

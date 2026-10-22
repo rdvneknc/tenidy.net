@@ -66,9 +66,11 @@ export const translations = {
     workPage: {
       label: 'Portföy',
       title: 'İşlerimiz',
-      subtitle: 'Tüm video işlerimiz — kısa format ve sinematik filmler.',
+      subtitle: 'Tüm video ve görsel işlerimiz — kısa format, sinematik filmler ve görseller.',
       all: 'Tümü',
-      empty: 'Henüz video yok.',
+      images: 'Görseller',
+      empty: 'Henüz içerik yok.',
+      showMore: 'Daha fazla',
     },
     services: {
       label: 'Hizmetler',
@@ -301,9 +303,11 @@ export const translations = {
     workPage: {
       label: 'Portfolio',
       title: 'Our Work',
-      subtitle: 'Every video we’ve made — short-form and cinematic.',
+      subtitle: 'Every video and image we’ve made — short-form, cinematic, and stills.',
       all: 'All',
-      empty: 'No videos yet.',
+      images: 'Images',
+      empty: 'Nothing here yet.',
+      showMore: 'Show more',
     },
     services: {
       label: 'Services',

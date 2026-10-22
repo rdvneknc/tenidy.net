@@ -2,10 +2,13 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getVideoWatchEmbed } from '../lib/videoPreview'
+import { mediaSrc } from '../lib/media'
+import { getVideoWatchEmbed, resolveWorkThumbnail } from '../lib/videoPreview'
 
 export default function VideoModal({ work, open, onClose }) {
-  const embed = work ? getVideoWatchEmbed(work.videoUrl) : null
+  const isImage = work?.mediaType === 'image'
+  const embed = !isImage && work ? getVideoWatchEmbed(work.videoUrl) : null
+  const imageSrc = isImage && work ? mediaSrc(resolveWorkThumbnail(work) || work.thumbnail) : ''
   const isVertical = work?.aspectRatio === '9:16'
 
   useEffect(() => {
@@ -44,7 +47,7 @@ export default function VideoModal({ work, open, onClose }) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label={work.title}
+            aria-label={work.title || (isImage ? 'Image' : 'Video')}
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
@@ -53,22 +56,33 @@ export default function VideoModal({ work, open, onClose }) {
               isVertical ? 'w-[min(400px,92vw)]' : 'w-[min(1080px,96vw)]'
             }`}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-white/8 px-4 py-3">
-              <div className="min-w-0">
-                <p className="truncate text-sm font-semibold">{work.title}</p>
-                <p className="truncate text-[10px] tracking-[0.16em] text-muted uppercase">
-                  {work.videoType || work.category}
-                  {work.duration ? ` · ${work.duration}` : ''}
-                </p>
-              </div>
+            {isImage ? (
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition hover:border-lime hover:text-lime"
+                className="absolute top-3 right-3 z-20 inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/70 backdrop-blur-sm transition hover:border-lime hover:text-lime"
               >
                 <X className="size-4" />
               </button>
-            </div>
+            ) : (
+              <div className="flex items-center justify-between gap-3 border-b border-white/8 px-4 py-3">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold">{work.title}</p>
+                  {work.duration && (
+                    <p className="truncate text-[10px] tracking-[0.16em] text-muted uppercase">
+                      {work.duration}
+                    </p>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition hover:border-lime hover:text-lime"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
+            )}
 
             <div
               className="relative bg-black"
@@ -78,7 +92,19 @@ export default function VideoModal({ work, open, onClose }) {
                   : { aspectRatio: '16 / 9', width: '100%' }
               }
             >
-              {embed?.type === 'iframe' && (
+              {isImage && imageSrc && (
+                <img
+                  src={imageSrc}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+              )}
+              {isImage && !imageSrc && (
+                <div className="flex h-full items-center justify-center px-6 text-center text-sm text-muted">
+                  Görsel bulunamadı.
+                </div>
+              )}
+              {!isImage && embed?.type === 'iframe' && (
                 <iframe
                   title={work.title}
                   src={embed.src}
@@ -87,7 +113,7 @@ export default function VideoModal({ work, open, onClose }) {
                   allowFullScreen
                 />
               )}
-              {embed?.type === 'file' && (
+              {!isImage && embed?.type === 'file' && (
                 <video
                   src={embed.src}
                   controls
@@ -96,7 +122,7 @@ export default function VideoModal({ work, open, onClose }) {
                   className="absolute inset-0 h-full w-full object-contain"
                 />
               )}
-              {!embed && (
+              {!isImage && !embed && (
                 <div className="flex h-full items-center justify-center px-6 text-center text-sm text-muted">
                   Bu video bağlantısı önizlenemiyor.
                 </div>

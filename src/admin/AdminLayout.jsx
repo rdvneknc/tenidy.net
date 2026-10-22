@@ -8,7 +8,7 @@ import { useAdminAuth } from './AdminAuth'
 
 const nav = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
-  { to: '/admin/videos', label: 'Videos', icon: Video },
+  { to: '/admin/videos', label: 'Media', icon: Video },
   { to: '/admin/messages', label: 'Messages', icon: Mail, badge: 'messages' },
   { to: '/admin/blog', label: 'Blog', icon: FileText },
 ]

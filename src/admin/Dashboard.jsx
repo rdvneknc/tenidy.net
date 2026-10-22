@@ -15,7 +15,7 @@ export default function AdminDashboard() {
 
   const cards = [
     {
-      label: 'Videos',
+      label: 'Media',
       value: stats?.videos ?? '—',
       hint: `${stats?.homeVideos ?? 0} on homepage`,
       to: '/admin/videos',
