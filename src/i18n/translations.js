@@ -34,7 +34,7 @@ export const translations = {
       about: {
         title: 'Hakkımızda',
         description:
-          'ekiworks hakkında — 2014’ten beri pazarlama ve yaratıcı üretim deneyimi; AI video ve sosyal medya.',
+          'ekiworks hakkında — 2021’ten beri pazarlama ve yaratıcı üretim deneyimi; AI video ve sosyal medya.',
       },
       contact: {
         title: 'İletişim',
@@ -185,13 +185,13 @@ export const translations = {
       title: 'Hikâye anlatan,',
       titleAccent: 'iş bilen bir ekip.',
       paragraphs: [
-        'Ekiworks, 2014’e uzanan pazarlama, sosyal medya, e-ticaret ve yazılım deneyimini bir araya getiriyor. Yolculuğumuz Türkiye’de başladı; bugün Estonya ve Amerika Birleşik Devletleri’ndeki ofislerimizle, yaratıcı düşünceyi iş dünyasına dair pratik bir anlayışla birleştirerek devam ediyor.',
+        'Ekiworks, 2021’e uzanan pazarlama, sosyal medya, e-ticaret ve yazılım deneyimini bir araya getiriyor. Yolculuğumuz Türkiye’de başladı; bugün Estonya ve Amerika Birleşik Devletleri’ndeki ofislerimizle, yaratıcı düşünceyi iş dünyasına dair pratik bir anlayışla birleştirerek devam ediyor.',
         'Yapay zeka araçları yeni yaratıcı olanaklar açtıkça, yapay zeka destekli video ve görsel içeriği işimizin merkezine aldık. Bugün her markanın kişiliğine, kitlesine ve hedeflerine özel reklam filmleri, ürün görselleri, sinematik hikâyeler ve sosyal içerikler üretiyoruz. Ayrıca işletmelerin sosyal medya varlıklarını kurmasına, büyütmesine ve yönetmesine yardımcı oluyoruz.',
         'Dijital sektörlerdeki yılların deneyimi, dikkati nasıl kazanacağımızı ve bunu nasıl değerlendireceğimizi öğretti. Açılış kancasını, hikâyeyi, temposunu ve birini izlemeye veya paylaşmaya neyin teşvik ettiğini dikkatle düşünüyoruz. Bu bakış açısını her projeye taşıyor; yeni fikirleri denemeye ve keşfetmeye açık kalıyoruz.',
         'Küçük, uygulamaya dönük bir ekibiz; net iletişimi ve özenli iş birliğini önemsiyoruz. İşinizi anlamaya zaman ayırıyor, masaya fikirler getiriyor ve ilk sohbetten son kurguya kadar sürecin içinde kalıyoruz. Yeni bir şey lansmanı yapıyor veya markanıza taze bir enerji katmak istiyorsanız, insanların hatırlayacağı bir şey yaratmanıza yardımcı olmaktan mutluluk duyarız.',
       ],
       stats: [
-        { value: '2014', label: 'Başlangıç' },
+        { value: '2021', label: 'Başlangıç' },
         { value: '3', label: 'Ülke' },
         { value: 'AI', label: 'Odak' },
       ],
@@ -271,7 +271,7 @@ export const translations = {
       about: {
         title: 'About',
         description:
-          'About ekiworks — marketing and creative experience since 2014; AI video and social media.',
+          'About ekiworks — marketing and creative experience since 2021; AI video and social media.',
       },
       contact: {
         title: 'Contact',
@@ -422,13 +422,13 @@ export const translations = {
       title: 'Storytellers with',
       titleAccent: 'business sense.',
       paragraphs: [
-        'Ekiworks brings together experience in marketing, social media, e-commerce, and software dating back to 2014. Our journey began in Türkiye and now continues with offices in Estonia and the United States, combining creative thinking with a practical understanding of business.',
+        'Ekiworks brings together experience in marketing, social media, e-commerce, and software dating back to 2021. Our journey began in Türkiye and now continues with offices in Estonia and the United States, combining creative thinking with a practical understanding of business.',
         'As AI tools opened up new creative possibilities, we made AI-powered video and visual content a central part of our work. Today, we create commercials, product visuals, cinematic stories, and social content tailored to each brand’s personality, audience, and goals. We also help businesses establish, grow, and manage their social media presence.',
         'Years of working across digital industries have taught us how to earn attention and make it count. We think carefully about the opening hook, the story, the pacing, and what makes someone want to keep watching or share. We bring that thinking to every project, alongside a willingness to experiment and explore fresh ideas.',
         'We’re a small, hands-on team that values clear communication and thoughtful collaboration. We take the time to understand your business, bring ideas to the table, and stay involved from the first conversation to the final edit. Whether you’re launching something new or giving your brand fresh energy, we’d love to help you create something people remember.',
       ],
       stats: [
-        { value: '2014', label: 'Since' },
+        { value: '2021', label: 'Since' },
         { value: '3', label: 'Countries' },
         { value: 'AI', label: 'Focus' },
       ],
