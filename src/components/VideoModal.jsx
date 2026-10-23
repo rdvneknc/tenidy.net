@@ -68,11 +68,9 @@ export default function VideoModal({ work, open, onClose }) {
               <div className="flex items-center justify-between gap-3 border-b border-white/8 px-4 py-3">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold">{work.title}</p>
-                  {work.duration && (
-                    <p className="truncate text-[10px] tracking-[0.16em] text-muted uppercase">
-                      {work.duration}
-                    </p>
-                  )}
+                  <p className="truncate text-[10px] tracking-[0.16em] text-muted uppercase">
+                    {[work.videoType, work.duration].filter(Boolean).join(' · ')}
+                  </p>
                 </div>
                 <button
                   type="button"

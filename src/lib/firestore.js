@@ -252,7 +252,7 @@ export async function ensureSeedVideos() {
       thumbnail:
         'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80',
       aspectRatio: '9:16',
-      videoType: 'Cinematic',
+      videoType: 'Game Ads',
       showOnHome: true,
     },
     {
@@ -262,7 +262,7 @@ export async function ensureSeedVideos() {
       thumbnail:
         'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1100&q=80',
       aspectRatio: '16:9',
-      videoType: 'Cinematic',
+      videoType: 'Game Ads',
       showOnHome: true,
     },
   ]

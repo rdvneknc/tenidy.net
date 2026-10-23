@@ -166,11 +166,22 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
           )}
         </div>
 
-        {!isImage && work.title && (
+        {(!isImage && work.title) || work.videoType ? (
           <div className="mt-2 px-0.5 pb-0.5">
-            <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
+            {!isImage && work.title && (
+              <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
+            )}
+            {work.videoType && (
+              <p
+                className={`truncate text-[10px] font-medium tracking-[0.16em] text-muted uppercase ${
+                  !isImage && work.title ? 'mt-0.5' : ''
+                }`}
+              >
+                {work.videoType}
+              </p>
+            )}
           </div>
-        )}
+        ) : null}
       </button>
 
       <VideoModal work={work} open={open} onClose={() => setOpen(false)} />

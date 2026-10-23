@@ -23,7 +23,17 @@ import {
 } from '../lib/firestore'
 import { mediaSrc } from '../lib/media'
 import { resolveWorkThumbnail } from '../lib/videoPreview'
+import AdminSelect from './AdminSelect'
 import LocalImageField from './LocalImageField'
+
+const MEDIA_TAGS = [
+  'Game Ads',
+  'Application Ads',
+  'UGC',
+  'Social Media',
+  'AI Visuals',
+  'Other',
+]
 
 const emptyForm = {
   title: '',
@@ -32,6 +42,7 @@ const emptyForm = {
   thumbnail: '',
   aspectRatio: '9:16',
   mediaType: 'video',
+  videoType: 'Game Ads',
   showOnHome: true,
 }
 
@@ -82,7 +93,10 @@ function SortableRow({ video, onEdit, onDelete, onToggleHome }) {
             <p className="text-sm font-semibold">
               {video.title || (isImage ? 'Untitled image' : 'Untitled')}
             </p>
-            <p className="text-xs text-muted">{isImage ? 'Image' : 'Video'}</p>
+            <p className="text-xs text-muted">
+              {isImage ? 'Image' : 'Video'}
+              {video.videoType ? ` · ${video.videoType}` : ''}
+            </p>
           </div>
         </div>
       </td>
@@ -127,6 +141,7 @@ export default function AdminVideos() {
   const [videos, setVideos] = useState([])
   const [filterAspect, setFilterAspect] = useState('')
   const [filterMedia, setFilterMedia] = useState('')
+  const [filterTag, setFilterTag] = useState('')
   const [filterHome, setFilterHome] = useState('')
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -148,15 +163,21 @@ export default function AdminVideos() {
     return videos.filter((v) => {
       if (filterAspect && v.aspectRatio !== filterAspect) return false
       if (filterMedia && v.mediaType !== filterMedia) return false
+      if (filterTag && v.videoType !== filterTag) return false
       if (filterHome === '1' && !v.showOnHome) return false
       if (filterHome === '0' && v.showOnHome) return false
       if (query) {
         const q = query.toLowerCase()
-        if (!v.title.toLowerCase().includes(q)) return false
+        if (
+          !v.title.toLowerCase().includes(q) &&
+          !(v.videoType || '').toLowerCase().includes(q)
+        ) {
+          return false
+        }
       }
       return true
     })
-  }, [videos, filterAspect, filterMedia, filterHome, query])
+  }, [videos, filterAspect, filterMedia, filterTag, filterHome, query])
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
 
@@ -176,6 +197,7 @@ export default function AdminVideos() {
       thumbnail: video.thumbnail || '',
       aspectRatio: video.aspectRatio,
       mediaType: video.mediaType === 'image' ? 'image' : 'video',
+      videoType: MEDIA_TAGS.includes(video.videoType) ? video.videoType : 'Other',
       showOnHome: video.showOnHome,
     })
     setError('')
@@ -200,7 +222,7 @@ export default function AdminVideos() {
       const payload = {
         ...form,
         title: isImage ? '' : form.title.trim(),
-        videoType: '',
+        videoType: form.videoType || 'Other',
         duration: isImage ? '' : form.duration,
         videoUrl: isImage ? '' : form.videoUrl,
       }
@@ -281,33 +303,49 @@ export default function AdminVideos() {
           placeholder="Search…"
           className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm outline-none focus:border-lime"
         />
-        <select
+        <AdminSelect
+          aria-label="Filter by ratio"
+          className="min-w-[9rem]"
           value={filterAspect}
-          onChange={(e) => setFilterAspect(e.target.value)}
-          className="rounded-lg border border-white/10 bg-[#111] px-3 py-2 text-sm"
-        >
-          <option value="">All ratios</option>
-          <option value="9:16">9:16</option>
-          <option value="16:9">16:9</option>
-        </select>
-        <select
+          onChange={setFilterAspect}
+          options={[
+            { value: '', label: 'All ratios' },
+            { value: '9:16', label: '9:16' },
+            { value: '16:9', label: '16:9' },
+          ]}
+        />
+        <AdminSelect
+          aria-label="Filter by media"
+          className="min-w-[9rem]"
           value={filterMedia}
-          onChange={(e) => setFilterMedia(e.target.value)}
-          className="rounded-lg border border-white/10 bg-[#111] px-3 py-2 text-sm"
-        >
-          <option value="">All media</option>
-          <option value="video">Videos</option>
-          <option value="image">Images</option>
-        </select>
-        <select
+          onChange={setFilterMedia}
+          options={[
+            { value: '', label: 'All media' },
+            { value: 'video', label: 'Videos' },
+            { value: 'image', label: 'Images' },
+          ]}
+        />
+        <AdminSelect
+          aria-label="Filter by tag"
+          className="min-w-[10rem]"
+          value={filterTag}
+          onChange={setFilterTag}
+          options={[
+            { value: '', label: 'All tags' },
+            ...MEDIA_TAGS.map((tag) => ({ value: tag, label: tag })),
+          ]}
+        />
+        <AdminSelect
+          aria-label="Filter by homepage"
+          className="min-w-[9rem]"
           value={filterHome}
-          onChange={(e) => setFilterHome(e.target.value)}
-          className="rounded-lg border border-white/10 bg-[#111] px-3 py-2 text-sm"
-        >
-          <option value="">Home: all</option>
-          <option value="1">On homepage</option>
-          <option value="0">Not on homepage</option>
-        </select>
+          onChange={setFilterHome}
+          options={[
+            { value: '', label: 'Home: all' },
+            { value: '1', label: 'On homepage' },
+            { value: '0', label: 'Not on homepage' },
+          ]}
+        />
       </div>
 
       <div className="mt-5 overflow-hidden rounded-2xl border border-white/10">
@@ -363,34 +401,45 @@ export default function AdminVideos() {
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <Field label="Media type">
-                  <select
+                  <AdminSelect
+                    aria-label="Media type"
                     value={form.mediaType}
-                    onChange={(e) =>
+                    onChange={(mediaType) =>
                       setForm({
                         ...form,
-                        mediaType: e.target.value,
-                        title: e.target.value === 'image' ? '' : form.title,
-                        duration: e.target.value === 'image' ? '' : form.duration,
-                        videoUrl: e.target.value === 'image' ? '' : form.videoUrl,
+                        mediaType,
+                        title: mediaType === 'image' ? '' : form.title,
+                        duration: mediaType === 'image' ? '' : form.duration,
+                        videoUrl: mediaType === 'image' ? '' : form.videoUrl,
                       })
                     }
-                    className="field"
-                  >
-                    <option value="video">Video</option>
-                    <option value="image">Image</option>
-                  </select>
+                    options={[
+                      { value: 'video', label: 'Video' },
+                      { value: 'image', label: 'Image' },
+                    ]}
+                  />
                 </Field>
                 <Field label="Aspect ratio">
-                  <select
+                  <AdminSelect
+                    aria-label="Aspect ratio"
                     value={form.aspectRatio}
-                    onChange={(e) => setForm({ ...form, aspectRatio: e.target.value })}
-                    className="field"
-                  >
-                    <option value="9:16">9:16</option>
-                    <option value="16:9">16:9</option>
-                  </select>
+                    onChange={(aspectRatio) => setForm({ ...form, aspectRatio })}
+                    options={[
+                      { value: '9:16', label: '9:16' },
+                      { value: '16:9', label: '16:9' },
+                    ]}
+                  />
                 </Field>
               </div>
+
+              <Field label="Tag">
+                <AdminSelect
+                  aria-label="Tag"
+                  value={form.videoType}
+                  onChange={(videoType) => setForm({ ...form, videoType })}
+                  options={MEDIA_TAGS.map((tag) => ({ value: tag, label: tag }))}
+                />
+              </Field>
 
               {!isImage && (
                 <Field label="Title">
