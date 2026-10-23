@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Work from './pages/Work'
+import Websites from './pages/Websites'
 import ServicesPage from './pages/Services'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
@@ -13,6 +14,7 @@ import AdminLayout from './admin/AdminLayout'
 import AdminLogin from './admin/Login'
 import AdminDashboard from './admin/Dashboard'
 import AdminVideos from './admin/Videos'
+import AdminWebsites from './admin/Websites'
 import AdminMessages from './admin/Messages'
 import BlogAdmin from './admin/BlogAdmin'
 
@@ -25,6 +27,7 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/work" element={<Work />} />
+              <Route path="/websites" element={<Websites />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
@@ -36,6 +39,7 @@ export default function App() {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
               <Route path="videos" element={<AdminVideos />} />
+              <Route path="websites" element={<AdminWebsites />} />
               <Route path="messages" element={<AdminMessages />} />
               <Route path="blog" element={<BlogAdmin />} />
             </Route>

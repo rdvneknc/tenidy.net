@@ -15,6 +15,7 @@ import {
 import { db } from './firebase'
 
 const videosCol = collection(db, 'videos')
+const websitesCol = collection(db, 'websites')
 const messagesCol = collection(db, 'messages')
 const postsCol = collection(db, 'posts')
 
@@ -121,6 +122,175 @@ export async function deleteVideo(id) {
   await deleteDoc(doc(db, 'videos', id))
 }
 
+function mapWebsite(id, data) {
+  return {
+    id,
+    title: data.title || '',
+    url: data.url || '',
+    thumbnail: data.thumbnail || '',
+    description: data.description || '',
+    tag: data.tag || '',
+    sortOrder: data.sortOrder ?? 0,
+    createdAt: data.createdAt?.toDate?.()?.toISOString?.() || data.createdAt || null,
+    updatedAt: data.updatedAt?.toDate?.()?.toISOString?.() || data.updatedAt || null,
+  }
+}
+
+const SEED_WEBSITES = [
+  {
+    title: 'Limon Games',
+    url: 'https://www.limon.games/',
+    thumbnail: '/limon-games-website.webp',
+    description: '',
+    tag: 'Gaming',
+  },
+  {
+    title: 'Airlivo',
+    url: 'https://www.airlivo.com/tr',
+    thumbnail: '/airlivo-website.webp',
+    description: '',
+    tag: 'SaaS',
+  },
+  {
+    title: 'Atelier Nord',
+    url: 'https://example.com/atelier-nord',
+    thumbnail: '/media/site-atelier.jpg',
+    description: '',
+    tag: 'Studio',
+  },
+  {
+    title: 'Maison Line',
+    url: 'https://example.com/maison-line',
+    thumbnail: '/media/site-commerce.jpg',
+    description: '',
+    tag: 'E-commerce',
+  },
+  {
+    title: 'Ledgerly',
+    url: 'https://example.com/ledgerly',
+    thumbnail: '/media/site-fintech.jpg',
+    description: '',
+    tag: 'Fintech',
+  },
+  {
+    title: 'Copper & Co',
+    url: 'https://example.com/copper-co',
+    thumbnail: '/media/site-cafe.jpg',
+    description: '',
+    tag: 'Local Business',
+  },
+]
+
+export async function listWebsites() {
+  try {
+    const q = query(websitesCol, orderBy('sortOrder', 'asc'))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => mapWebsite(d.id, d.data()))
+  } catch (err) {
+    // Fallback if sortOrder index is missing
+    console.warn('listWebsites orderBy failed, using unsorted fetch', err)
+    const snap = await getDocs(websitesCol)
+    return snap.docs
+      .map((d) => mapWebsite(d.id, d.data()))
+      .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+  }
+}
+
+const WEBSITE_COVER_PATCHES = [
+  { test: (s) => /limon\.games/i.test(s.url), thumbnail: '/limon-games-website.webp' },
+  { test: (s) => /airlivo\.com/i.test(s.url), thumbnail: '/airlivo-website.webp' },
+]
+
+function localSeedWebsites() {
+  return SEED_WEBSITES.map((item, i) => ({
+    id: `seed-${i}`,
+    ...item,
+    sortOrder: i,
+    createdAt: null,
+    updatedAt: null,
+  }))
+}
+
+/** Seed starter websites when collection is empty; falls back to local demo data. */
+export async function ensureSeedWebsites() {
+  try {
+    const existing = await listWebsites()
+    if (existing.length) {
+      for (const site of existing) {
+        const patch = WEBSITE_COVER_PATCHES.find((p) => p.test(site))
+        if (patch && site.thumbnail !== patch.thumbnail) {
+          await updateWebsite(site.id, { thumbnail: patch.thumbnail })
+        }
+      }
+      return listWebsites()
+    }
+
+    // Collection empty — write seed docs (needs auth write rules)
+    for (const item of SEED_WEBSITES) {
+      await createWebsite(item)
+    }
+    return listWebsites()
+  } catch (err) {
+    console.error(err)
+    // Before rules were fixed, writes failed and only this temporary list was shown
+    return localSeedWebsites()
+  }
+}
+
+export async function createWebsite(data) {
+  let maxOrder = -1
+  try {
+    const sortSnap = await getDocs(query(websitesCol, orderBy('sortOrder', 'desc')))
+    maxOrder = sortSnap.docs[0]?.data()?.sortOrder ?? -1
+  } catch {
+    const snap = await getDocs(websitesCol)
+    snap.docs.forEach((d) => {
+      const order = d.data()?.sortOrder ?? -1
+      if (order > maxOrder) maxOrder = order
+    })
+  }
+  const payload = {
+    title: data.title || '',
+    url: data.url || '',
+    thumbnail: data.thumbnail || '',
+    description: data.description || '',
+    tag: data.tag || '',
+    sortOrder: maxOrder + 1,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  }
+  const ref = await addDoc(websitesCol, payload)
+  const created = await getDoc(ref)
+  return mapWebsite(ref.id, created.data())
+}
+
+export async function updateWebsite(id, data) {
+  const payload = { updatedAt: serverTimestamp() }
+  if (data.title !== undefined) payload.title = data.title
+  if (data.url !== undefined) payload.url = data.url
+  if (data.thumbnail !== undefined) payload.thumbnail = data.thumbnail
+  if (data.description !== undefined) payload.description = data.description
+  if (data.tag !== undefined) payload.tag = data.tag
+  await updateDoc(doc(db, 'websites', id), payload)
+  const updated = await getDoc(doc(db, 'websites', id))
+  return mapWebsite(id, updated.data())
+}
+
+export async function deleteWebsite(id) {
+  await deleteDoc(doc(db, 'websites', id))
+}
+
+export async function reorderWebsites(ids) {
+  const batch = writeBatch(db)
+  ids.forEach((id, index) => {
+    batch.update(doc(db, 'websites', id), {
+      sortOrder: index,
+      updatedAt: serverTimestamp(),
+    })
+  })
+  await batch.commit()
+}
+
 export async function reorderVideos(ids) {
   const batch = writeBatch(db)
   ids.forEach((id, index) => {
@@ -225,14 +395,16 @@ export async function deletePost(id) {
 }
 
 export async function getAdminStats() {
-  const [videos, messages, posts] = await Promise.all([
+  const [videos, websites, messages, posts] = await Promise.all([
     listVideos(),
+    listWebsites(),
     listMessages(),
     listPosts(),
   ])
   return {
     videos: videos.length,
     homeVideos: videos.filter((v) => v.showOnHome).length,
+    websites: websites.length,
     messages: messages.length,
     unread: messages.filter((m) => !m.isRead).length,
     posts: posts.length,

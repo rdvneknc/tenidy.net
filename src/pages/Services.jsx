@@ -6,6 +6,7 @@ import {
   CalendarDays,
   Clapperboard,
   Gamepad2,
+  Globe,
   ImageIcon,
   Play,
   ScanFace,
@@ -20,6 +21,7 @@ const ICONS = {
   'ai-ugc': ScanFace,
   'social-content': Play,
   'ai-visuals': ImageIcon,
+  'website-design': Globe,
   'social-mgmt': CalendarDays,
 }
 
@@ -29,6 +31,7 @@ const MEDIA = {
   'ai-ugc': '/aiucg.jpg',
   'social-content': '/socialmediacontent.jpg',
   'ai-visuals': '/aivisualproductimagery.jpg',
+  'website-design': '/websitedesign.jpg',
   'social-mgmt': '/socialmediamanagement.jpg',
 }
 

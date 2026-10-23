@@ -9,7 +9,8 @@ export const locales = [
 export const translations = {
   tr: {
     nav: {
-      work: 'İşlerimiz',
+      work: 'Video & Görseller',
+      websites: 'Websiteler',
       services: 'Hizmetler',
       about: 'Hakkımızda',
       contact: 'İletişim',
@@ -19,17 +20,22 @@ export const translations = {
       home: {
         title: 'AI İçerik Ajansı',
         description:
-          'ekiworks — markalar, oyunlar ve uygulamalar için yapay zeka destekli filmler, reklamlar ve yaratıcı video içerikleri.',
+          'ekiworks — markalar, oyunlar ve uygulamalar için yapay zeka destekli filmler, görseller, websiteler ve yaratıcı içerik.',
       },
       work: {
-        title: 'İşlerimiz',
+        title: 'Video & Görseller',
         description:
-          'ekiworks portföyü — kısa format ve sinematik AI video işlerimizi keşfedin.',
+          'ekiworks video ve görsel portföyü — kısa format, sinematik filmler ve AI görseller.',
+      },
+      websites: {
+        title: 'Websiteler',
+        description:
+          'ekiworks websitesi tasarımları — markalar için modern, hızlı ve amaca uygun siteler.',
       },
       services: {
         title: 'Hizmetler',
         description:
-          'Oyun ve uygulama reklamları, AI reklamlar, UGC, sosyal medya içerikleri, görseller ve hesap yönetimi.',
+          'Oyun ve uygulama reklamları, AI reklamlar, UGC, sosyal medya, görseller, websitesi tasarımı ve hesap yönetimi.',
       },
       about: {
         title: 'Hakkımızda',
@@ -50,27 +56,35 @@ export const translations = {
       titleBefore: 'Fikirleri',
       titleAccent: 'izlenmeye değer hikâyelere',
       titleAfter: 'dönüştürüyoruz.',
-      description: 'Markanız için yapay zeka destekli filmler ve yaratıcı video içerikleri.',
-      explore: 'İşlerimizi keşfedin',
+      description:
+        'Markanız için yapay zeka destekli filmler, görseller, websiteler ve yaratıcı içerik.',
+      explore: 'Video & görselleri keşfedin',
       showreel: 'Showreel izle',
-      strip: ['Oyun & Uygulama', 'AI Reklamlar', 'Sosyal Medya'],
+      strip: ['Oyun & Uygulama', 'AI Reklamlar', 'Websiteler'],
     },
     portfolio: {
-      label: 'İşlerimiz',
+      label: 'Video & Görseller',
       title: 'Öne Çıkanlar',
       subtitle: 'Yapay zeka ile üretilmiş, öne çıkan hikâyeler.',
-      viewAll: 'Tüm işler',
+      viewAll: 'Tümünü gör',
       shortTitle: 'Kısa format hikâyeler',
       filmTitle: 'Sinematik filmler',
     },
     workPage: {
       label: 'Portföy',
-      title: 'İşlerimiz',
-      subtitle: 'Tüm video ve görsel işlerimiz — kısa format, sinematik filmler ve görseller.',
+      title: 'Video & Görseller',
+      subtitle: 'Kısa format videolar, sinematik filmler ve AI görseller.',
       all: 'Tümü',
       images: 'Görseller',
       empty: 'Henüz içerik yok.',
       showMore: 'Daha fazla',
+    },
+    websitesPage: {
+      label: 'Portföy',
+      title: 'Websiteler',
+      subtitle: 'Markalar için tasarladığımız modern websiteleri.',
+      visit: 'Siteyi ziyaret et',
+      empty: 'Henüz websitesi eklenmedi.',
     },
     services: {
       label: 'Hizmetler',
@@ -88,9 +102,9 @@ export const translations = {
             'Konseptten son kurguya sinematik marka filmleri ve ürün videoları — hikâyenizi öne çıkaran görseller.',
         },
         {
-          title: 'Sosyal Medya Yönetimi',
+          title: 'Websitesi Tasarımı',
           description:
-            'Hesap kurulumu, içerik planı, yayın ve sürekli yönetim — kitlenizle bağ kuran tutarlı bir varlık.',
+            'Markanıza özel, hızlı ve modern websiteleri — net yapı, güçlü görseller ve dönüşüme odaklı deneyim.',
         },
       ],
     },
@@ -98,7 +112,7 @@ export const translations = {
       label: 'Ne Yapıyoruz',
       titleBefore: 'Yaratıcı hizmetler.',
       titleAccent: 'Markanıza özel.',
-      subtitle: 'Birlikte çalışan videolar, görseller ve sosyal medya desteği.',
+      subtitle: 'Videolar, görseller, websiteler ve sosyal medya desteği — birlikte çalışan bir bütün.',
       discuss: 'Projeni konuşalım',
       footerTitle: 'İzlenmeye değer bir şey yaratalım.',
       cta: 'Projenizi anlatın',
@@ -154,6 +168,16 @@ export const translations = {
           ],
         },
         {
+          id: 'website-design',
+          title: 'Websitesi Tasarımı',
+          description:
+            'Markanıza özel, hızlı ve modern websiteleri. Net yapı, güçlü görseller ve ziyaretçiyi harekete geçiren bir deneyim.',
+          details: [
+            'Markanızın dijital vitrinini net, hızlı ve akılda kalır hale getirin. Kurumsal sitelerden ürün ve kampanya sayfalarına kadar; kimliğinizi yansıtan, mobil uyumlu ve dönüşüme odaklı websiteleri tasarlıyoruz.',
+            'Süreç; ihtiyaç analizi, bilgi mimarisi, görsel yön, arayüz tasarımı ve yayına hazır teslimatı kapsar. Mesajınızın ilk bakışta anlaşılmasını, içeriklerin okunabilir olmasını ve sitenin hem masaüstünde hem mobilde iyi çalışmasını önemseriz. İsterseniz mevcut marka varlıklarınızı kullanır, yoksa AI destekli görseller ve içeriklerle sayfaları güçlendiririz.',
+          ],
+        },
+        {
           id: 'social-mgmt',
           title: 'Sosyal Medya Yönetimi',
           description:
@@ -178,7 +202,7 @@ export const translations = {
       button: 'Bize anlatın',
     },
     footer: {
-      tagline: 'Yaratıcı fikirler. Etkileyici videolar.',
+      tagline: 'Yaratıcı fikirler. Etkileyici videolar ve websiteler.',
     },
     about: {
       label: 'Hakkımızda',
@@ -186,7 +210,7 @@ export const translations = {
       titleAccent: 'iş bilen bir ekip.',
       paragraphs: [
         'Ekiworks, 2021’e uzanan pazarlama, sosyal medya, e-ticaret ve yazılım deneyimini bir araya getiriyor. Yolculuğumuz Türkiye’de başladı; bugün Estonya ve Amerika Birleşik Devletleri’ndeki ofislerimizle, yaratıcı düşünceyi iş dünyasına dair pratik bir anlayışla birleştirerek devam ediyor.',
-        'Yapay zeka araçları yeni yaratıcı olanaklar açtıkça, yapay zeka destekli video ve görsel içeriği işimizin merkezine aldık. Bugün her markanın kişiliğine, kitlesine ve hedeflerine özel reklam filmleri, ürün görselleri, sinematik hikâyeler ve sosyal içerikler üretiyoruz. Ayrıca işletmelerin sosyal medya varlıklarını kurmasına, büyütmesine ve yönetmesine yardımcı oluyoruz.',
+        'Yapay zeka araçları yeni yaratıcı olanaklar açtıkça, yapay zeka destekli video ve görsel içeriği işimizin merkezine aldık. Bugün her markanın kişiliğine, kitlesine ve hedeflerine özel reklam filmleri, ürün görselleri, sinematik hikâyeler, sosyal içerikler ve websiteleri üretiyoruz. Ayrıca işletmelerin sosyal medya varlıklarını kurmasına, büyütmesine ve yönetmesine yardımcı oluyoruz.',
         'Dijital sektörlerdeki yılların deneyimi, dikkati nasıl kazanacağımızı ve bunu nasıl değerlendireceğimizi öğretti. Açılış kancasını, hikâyeyi, temposunu ve birini izlemeye veya paylaşmaya neyin teşvik ettiğini dikkatle düşünüyoruz. Bu bakış açısını her projeye taşıyor; yeni fikirleri denemeye ve keşfetmeye açık kalıyoruz.',
         'Küçük, uygulamaya dönük bir ekibiz; net iletişimi ve özenli iş birliğini önemsiyoruz. İşinizi anlamaya zaman ayırıyor, masaya fikirler getiriyor ve ilk sohbetten son kurguya kadar sürecin içinde kalıyoruz. Yeni bir şey lansmanı yapıyor veya markanıza taze bir enerji katmak istiyorsanız, insanların hatırlayacağı bir şey yaratmanıza yardımcı olmaktan mutluluk duyarız.',
       ],
@@ -217,7 +241,7 @@ export const translations = {
       emailField: 'E-posta',
       emailPlaceholder: 'you@company.com',
       projectType: 'Hangi konuda yardımcı olabiliriz?',
-      projectTypes: ['AI Video', 'Görsel İçerik', 'Sosyal Medya'],
+      projectTypes: ['AI Video', 'Görsel İçerik', 'Websitesi', 'Sosyal Medya'],
       message: 'Fikriniz',
       messagePlaceholder: 'Ne yaratmak istersiniz?',
       send: 'Talep gönder',
@@ -246,7 +270,8 @@ export const translations = {
   },
   en: {
     nav: {
-      work: 'Our Work',
+      work: 'Video & Visuals',
+      websites: 'Websites',
       services: 'Services',
       about: 'About',
       contact: 'Contact',
@@ -256,17 +281,22 @@ export const translations = {
       home: {
         title: 'AI Content Agency',
         description:
-          'ekiworks — AI-powered films, commercials, and creative video content for brands, games, and apps.',
+          'ekiworks — AI-powered films, visuals, websites, and creative content for brands, games, and apps.',
       },
       work: {
-        title: 'Our Work',
+        title: 'Video & Visuals',
         description:
-          'Explore the ekiworks portfolio — short-form and cinematic AI video projects.',
+          'Explore the ekiworks video and visual portfolio — short-form, cinematic films, and AI imagery.',
+      },
+      websites: {
+        title: 'Websites',
+        description:
+          'ekiworks website designs — modern, fast sites built around your brand and goals.',
       },
       services: {
         title: 'Services',
         description:
-          'Game and app ads, AI commercials, UGC, social content, product imagery, and social media management.',
+          'Game and app ads, AI commercials, UGC, social content, product imagery, website design, and social media management.',
       },
       about: {
         title: 'About',
@@ -287,27 +317,34 @@ export const translations = {
       titleBefore: 'Turning ideas into',
       titleAccent: 'stories worth watching.',
       titleAfter: '',
-      description: 'AI-powered films and creative video content for your brand.',
-      explore: 'Explore our work',
+      description: 'AI-powered films, visuals, websites, and creative content for your brand.',
+      explore: 'Explore video & visuals',
       showreel: 'Watch showreel',
-      strip: ['Game & App Ads', 'AI Commercials', 'Social Media'],
+      strip: ['Game & App Ads', 'AI Commercials', 'Websites'],
     },
     portfolio: {
-      label: 'Our Work',
+      label: 'Video & Visuals',
       title: 'Featured Work',
       subtitle: 'AI-powered stories. Made to stand out.',
-      viewAll: 'View all work',
+      viewAll: 'View all',
       shortTitle: 'Short-form stories',
       filmTitle: 'Cinematic films',
     },
     workPage: {
       label: 'Portfolio',
-      title: 'Our Work',
-      subtitle: 'Every video and image we’ve made — short-form, cinematic, and stills.',
+      title: 'Video & Visuals',
+      subtitle: 'Short-form videos, cinematic films, and AI imagery.',
       all: 'All',
       images: 'Images',
       empty: 'Nothing here yet.',
       showMore: 'Show more',
+    },
+    websitesPage: {
+      label: 'Portfolio',
+      title: 'Websites',
+      subtitle: 'Modern websites we’ve designed for brands and businesses.',
+      visit: 'Visit site',
+      empty: 'No websites yet.',
     },
     services: {
       label: 'Services',
@@ -325,9 +362,9 @@ export const translations = {
             'Cinematic brand films and product videos, from concept to final edit. Thoughtful visuals that bring your story to life.',
         },
         {
-          title: 'Social Media Management',
+          title: 'Website Design',
           description:
-            'Account setup, content planning, publishing, and ongoing management — a consistent presence for your audience.',
+            'Modern, fast websites built around your brand — clear structure, strong visuals, and conversion-focused experience.',
         },
       ],
     },
@@ -335,7 +372,7 @@ export const translations = {
       label: 'What We Do',
       titleBefore: 'Creative services. Built around',
       titleAccent: 'your brand.',
-      subtitle: 'Videos, visuals, and social media support that work together.',
+      subtitle: 'Videos, visuals, websites, and social media support that work together.',
       discuss: 'Discuss your project',
       footerTitle: 'Let’s create something worth watching.',
       cta: 'Tell us about your project',
@@ -391,6 +428,16 @@ export const translations = {
           ],
         },
         {
+          id: 'website-design',
+          title: 'Website Design',
+          description:
+            'Modern, fast websites built around your brand. Clear structure, strong visuals, and an experience that moves visitors to act.',
+          details: [
+            'Make your brand’s digital front door clear, fast, and memorable. From company sites to product and campaign pages, we design mobile-friendly websites that reflect your identity and stay focused on conversion.',
+            'The process covers discovery, information architecture, visual direction, interface design, and delivery ready for launch. We care that your message lands at a glance, that content stays readable, and that the site works well on desktop and mobile. We can work with your existing brand assets — or strengthen pages with AI-powered visuals and content when you need them.',
+          ],
+        },
+        {
           id: 'social-mgmt',
           title: 'Social Media Management',
           description:
@@ -415,7 +462,7 @@ export const translations = {
       button: 'Tell us about it',
     },
     footer: {
-      tagline: 'Creative ideas. Compelling videos.',
+      tagline: 'Creative ideas. Compelling videos and websites.',
     },
     about: {
       label: 'About',
@@ -423,7 +470,7 @@ export const translations = {
       titleAccent: 'business sense.',
       paragraphs: [
         'Ekiworks brings together experience in marketing, social media, e-commerce, and software dating back to 2021. Our journey began in Türkiye and now continues with offices in Estonia and the United States, combining creative thinking with a practical understanding of business.',
-        'As AI tools opened up new creative possibilities, we made AI-powered video and visual content a central part of our work. Today, we create commercials, product visuals, cinematic stories, and social content tailored to each brand’s personality, audience, and goals. We also help businesses establish, grow, and manage their social media presence.',
+        'As AI tools opened up new creative possibilities, we made AI-powered video and visual content a central part of our work. Today, we create commercials, product visuals, cinematic stories, social content, and websites tailored to each brand’s personality, audience, and goals. We also help businesses establish, grow, and manage their social media presence.',
         'Years of working across digital industries have taught us how to earn attention and make it count. We think carefully about the opening hook, the story, the pacing, and what makes someone want to keep watching or share. We bring that thinking to every project, alongside a willingness to experiment and explore fresh ideas.',
         'We’re a small, hands-on team that values clear communication and thoughtful collaboration. We take the time to understand your business, bring ideas to the table, and stay involved from the first conversation to the final edit. Whether you’re launching something new or giving your brand fresh energy, we’d love to help you create something people remember.',
       ],
@@ -454,7 +501,7 @@ export const translations = {
       emailField: 'Email',
       emailPlaceholder: 'you@company.com',
       projectType: 'What can we help with?',
-      projectTypes: ['AI Video', 'Visual Content', 'Social Media'],
+      projectTypes: ['AI Video', 'Visual Content', 'Website', 'Social Media'],
       message: 'Your idea',
       messagePlaceholder: 'What would you like to create?',
       send: 'Send enquiry',

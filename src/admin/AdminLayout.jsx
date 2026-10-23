@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
-import { Clapperboard, FileText, LayoutDashboard, LogOut, Mail, Video } from 'lucide-react'
+import { Clapperboard, FileText, Globe, LayoutDashboard, LogOut, Mail, Video } from 'lucide-react'
 import { db } from '../lib/firebase'
 import Seo from '../components/Seo'
 import { useAdminAuth } from './AdminAuth'
@@ -9,6 +9,7 @@ import { useAdminAuth } from './AdminAuth'
 const nav = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/admin/videos', label: 'Media', icon: Video },
+  { to: '/admin/websites', label: 'Websites', icon: Globe },
   { to: '/admin/messages', label: 'Messages', icon: Mail, badge: 'messages' },
   { to: '/admin/blog', label: 'Blog', icon: FileText },
 ]
