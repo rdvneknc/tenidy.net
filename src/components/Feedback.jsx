@@ -93,7 +93,7 @@ function Stars({ rating }) {
   )
 }
 
-function FeedbackCard({ item, featured = false, className = '' }) {
+function FeedbackCard({ item, featured = false, className = '', verifiedLabel = 'Verified' }) {
   return (
     <article
       className={`relative flex h-[320px] flex-col rounded-2xl border border-white/10 bg-[#121212] p-5 md:h-[360px] md:p-6 ${
@@ -108,7 +108,7 @@ function FeedbackCard({ item, featured = false, className = '' }) {
           <span className="text-xs font-medium text-white/70">{item.rating.toFixed(1)} / 5</span>
         </div>
         <span className="shrink-0 rounded-full border border-white/15 px-2.5 py-0.5 text-[9px] font-medium tracking-[0.14em] text-muted uppercase">
-          Verified
+          {verifiedLabel}
         </span>
       </div>
 
@@ -140,6 +140,7 @@ function FeedbackCard({ item, featured = false, className = '' }) {
 
 export default function Feedback() {
   const { t } = useLanguage()
+  const verifiedLabel = t.feedback.verified || 'Verified'
   const pages = useMemo(() => {
     const chunks = []
     for (let i = 0; i < testimonials.length; i += 3) {
@@ -199,22 +200,27 @@ export default function Feedback() {
               key={item.name}
               item={item}
               featured={i === 0}
+              verifiedLabel={verifiedLabel}
               className="w-[min(85vw,320px)] shrink-0 snap-center"
             />
           ))}
         </div>
-        <p className="container-pad mt-5 text-[11px] font-normal text-muted">{t.feedback.caption}</p>
       </div>
 
       {/* Desktop: paged grid */}
       <div className="container-pad hidden md:block">
         <div className="grid gap-5 md:grid-cols-3">
           {pages[page].map((item, i) => (
-            <FeedbackCard key={`${item.name}-${page}`} item={item} featured={i === 0} />
+            <FeedbackCard
+              key={`${item.name}-${page}`}
+              item={item}
+              featured={i === 0}
+              verifiedLabel={verifiedLabel}
+            />
           ))}
         </div>
 
-        <div className="mt-8 flex flex-col items-center gap-4 sm:relative">
+        <div className="mt-8 flex justify-center">
           <div className="flex items-center gap-2">
             {pages.map((_, i) => (
               <button
@@ -228,9 +234,6 @@ export default function Feedback() {
               />
             ))}
           </div>
-          <p className="text-[11px] font-normal text-muted sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2">
-            {t.feedback.caption}
-          </p>
         </div>
       </div>
     </section>

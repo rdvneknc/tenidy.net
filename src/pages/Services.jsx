@@ -10,6 +10,7 @@ import {
   ImageIcon,
   Play,
   ScanFace,
+  Smartphone,
 } from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext'
 import ServiceModal from '../components/ServiceModal'
@@ -22,6 +23,7 @@ const ICONS = {
   'social-content': Play,
   'ai-visuals': ImageIcon,
   'website-design': Globe,
+  'mobile-apps': Smartphone,
   'social-mgmt': CalendarDays,
 }
 
@@ -32,6 +34,7 @@ const MEDIA = {
   'social-content': '/socialmediacontent.jpg',
   'ai-visuals': '/aivisualproductimagery.jpg',
   'website-design': '/websitedesign.jpg',
+  'mobile-apps': '/mobileapps.jpg',
   'social-mgmt': '/socialmediamanagement.jpg',
 }
 

@@ -50,6 +50,11 @@ function mapMessage(id, data) {
   }
 }
 
+function normalizePostLocale(locale) {
+  if (locale === 'tr' || locale === 'et' || locale === 'en') return locale
+  return 'en'
+}
+
 function mapPost(id, data) {
   return {
     id,
@@ -58,6 +63,7 @@ function mapPost(id, data) {
     excerpt: data.excerpt || '',
     content: data.content || '',
     coverImage: data.coverImage || '',
+    locale: normalizePostLocale(data.locale),
     published: !!data.published,
     createdAt: data.createdAt?.toDate?.()?.toISOString?.() || data.createdAt || null,
     updatedAt: data.updatedAt?.toDate?.()?.toISOString?.() || data.updatedAt || null,
@@ -341,26 +347,36 @@ function slugify(text) {
     .replace(/^-+|-+$/g, '')
 }
 
-export async function listPosts({ publishedOnly = false } = {}) {
+export async function listPosts({ publishedOnly = false, locale } = {}) {
   const q = query(postsCol, orderBy('createdAt', 'desc'))
   const snap = await getDocs(q)
   let items = snap.docs.map((d) => mapPost(d.id, d.data()))
   if (publishedOnly) items = items.filter((p) => p.published)
+  if (locale) {
+    const want = normalizePostLocale(locale)
+    items = items.filter((p) => p.locale === want)
+  }
   return items
 }
 
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug, { locale } = {}) {
   const q = query(postsCol, where('slug', '==', slug), where('published', '==', true))
   const snap = await getDocs(q)
   if (snap.empty) return null
-  const d = snap.docs[0]
-  return mapPost(d.id, d.data())
+  const items = snap.docs.map((d) => mapPost(d.id, d.data()))
+  if (locale) {
+    const want = normalizePostLocale(locale)
+    return items.find((p) => p.locale === want) || null
+  }
+  return items[0] || null
 }
 
 export async function createPost(data) {
+  const locale = normalizePostLocale(data.locale)
   let slug = data.slug || slugify(data.title)
   const existing = await getDocs(query(postsCol, where('slug', '==', slug)))
-  if (!existing.empty) slug = `${slug}-${Date.now()}`
+  const clash = existing.docs.some((d) => normalizePostLocale(d.data()?.locale) === locale)
+  if (clash) slug = `${slug}-${Date.now()}`
 
   const payload = {
     title: data.title,
@@ -368,6 +384,7 @@ export async function createPost(data) {
     excerpt: data.excerpt || '',
     content: data.content,
     coverImage: data.coverImage || '',
+    locale,
     published: !!data.published,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
@@ -384,6 +401,7 @@ export async function updatePost(id, data) {
   if (data.excerpt !== undefined) payload.excerpt = data.excerpt
   if (data.content !== undefined) payload.content = data.content
   if (data.coverImage !== undefined) payload.coverImage = data.coverImage
+  if (data.locale !== undefined) payload.locale = normalizePostLocale(data.locale)
   if (data.published !== undefined) payload.published = !!data.published
   await updateDoc(doc(db, 'posts', id), payload)
   const updated = await getDoc(doc(db, 'posts', id))

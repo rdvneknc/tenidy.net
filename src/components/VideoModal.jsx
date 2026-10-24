@@ -2,14 +2,18 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 import { mediaSrc } from '../lib/media'
 import { getVideoWatchEmbed, resolveWorkThumbnail } from '../lib/videoPreview'
 
 export default function VideoModal({ work, open, onClose }) {
+  const { t } = useLanguage()
   const isImage = work?.mediaType === 'image'
   const embed = !isImage && work ? getVideoWatchEmbed(work.videoUrl) : null
   const imageSrc = isImage && work ? mediaSrc(resolveWorkThumbnail(work) || work.thumbnail) : ''
   const isVertical = work?.aspectRatio === '9:16'
+  const tagLabel =
+    (work?.videoType && t.mediaTags?.[work.videoType]) || work?.videoType || ''
 
   useEffect(() => {
     if (!open) return undefined
@@ -69,7 +73,7 @@ export default function VideoModal({ work, open, onClose }) {
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold">{work.title}</p>
                   <p className="truncate text-[10px] tracking-[0.16em] text-muted uppercase">
-                    {[work.videoType, work.duration].filter(Boolean).join(' · ')}
+                    {[tagLabel, work.duration].filter(Boolean).join(' · ')}
                   </p>
                 </div>
                 <button

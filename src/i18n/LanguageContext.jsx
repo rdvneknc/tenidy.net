@@ -3,19 +3,52 @@ import { translations } from './translations'
 
 const LanguageContext = createContext(null)
 
-export function LanguageProvider({ children }) {
-  const [locale, setLocale] = useState(() => {
+const SUPPORTED = new Set(Object.keys(translations))
+
+/** Map browser language → site locale (no IP / geo lookup). */
+function detectBrowserLocale() {
+  if (typeof navigator === 'undefined') return 'en'
+
+  const candidates = [
+    ...(navigator.languages || []),
+    navigator.language,
+    navigator.userLanguage,
+  ].filter(Boolean)
+
+  for (const raw of candidates) {
+    const code = String(raw).toLowerCase().replace('_', '-')
+    const primary = code.split('-')[0]
+    if (SUPPORTED.has(primary)) return primary
+    if (SUPPORTED.has(code)) return code
+  }
+
+  return 'en'
+}
+
+function getInitialLocale() {
+  try {
     const saved = localStorage.getItem('ekiworks-locale')
-    return saved && translations[saved] ? saved : 'en'
-  })
+    if (saved && translations[saved]) return saved
+  } catch {
+    // ignore private-mode / blocked storage
+  }
+  return detectBrowserLocale()
+}
+
+export function LanguageProvider({ children }) {
+  const [locale, setLocale] = useState(getInitialLocale)
 
   useEffect(() => {
-    localStorage.setItem('ekiworks-locale', locale)
+    try {
+      localStorage.setItem('ekiworks-locale', locale)
+    } catch {
+      // ignore
+    }
     document.documentElement.lang = locale
   }, [locale])
 
   const value = useMemo(() => {
-    const dict = translations[locale] || translations.tr
+    const dict = translations[locale] || translations.en
     return {
       locale,
       setLocale: (code) => {

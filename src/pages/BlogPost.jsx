@@ -2,23 +2,26 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { getPostBySlug } from '../lib/firestore'
+import { BlogContent } from '../lib/blogContent'
 import { useLanguage } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 
 export default function BlogPost() {
   const { slug } = useParams()
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
   const [post, setPost] = useState(null)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    getPostBySlug(slug)
+    setPost(null)
+    setError('')
+    getPostBySlug(slug, { locale })
       .then((data) => {
         if (!data) setError('not-found')
         else setPost(data)
       })
       .catch(() => setError('not-found'))
-  }, [slug])
+  }, [slug, locale])
 
   if (error) {
     return (
@@ -77,8 +80,8 @@ export default function BlogPost() {
           />
         )}
 
-        <div className="prose-invert mt-10 max-w-3xl whitespace-pre-wrap text-base leading-relaxed text-white/75">
-          {post.content}
+        <div className="mt-10">
+          <BlogContent content={post.content} />
         </div>
       </div>
     </article>

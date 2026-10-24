@@ -8,6 +8,7 @@ import {
   ImageIcon,
   Play,
   ScanFace,
+  Smartphone,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -19,6 +20,7 @@ const ICONS = {
   'social-content': Play,
   'ai-visuals': ImageIcon,
   'website-design': Globe,
+  'mobile-apps': Smartphone,
   'social-mgmt': CalendarDays,
 }
 

@@ -6,16 +6,17 @@ import { useLanguage } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 
 export default function Blog() {
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    listPosts({ publishedOnly: true })
+    setLoading(true)
+    listPosts({ publishedOnly: true, locale })
       .then(setPosts)
       .catch(console.error)
       .finally(() => setLoading(false))
-  }, [])
+  }, [locale])
 
   return (
     <section className="border-b border-line">

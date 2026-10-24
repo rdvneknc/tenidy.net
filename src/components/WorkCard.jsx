@@ -6,12 +6,16 @@ import {
   parseVideoId,
   resolveWorkThumbnail,
 } from '../lib/videoPreview'
+import { useLanguage } from '../i18n/LanguageContext'
 import VideoModal from './VideoModal'
 
 export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }) {
+  const { t } = useLanguage()
   const isVertical = size === 'vertical'
   const isGrid = layout === 'grid'
   const isImage = work.mediaType === 'image'
+  const tagLabel =
+    (work.videoType && t.mediaTags?.[work.videoType]) || work.videoType || ''
   const preview = useMemo(
     () => (isImage ? null : getVideoPreview(work.videoUrl)),
     [isImage, work.videoUrl],
@@ -166,18 +170,18 @@ export default function WorkCard({ work, size = 'landscape', layout = 'scroll' }
           )}
         </div>
 
-        {(!isImage && work.title) || work.videoType ? (
+        {(!isImage && work.title) || tagLabel ? (
           <div className="mt-2 px-0.5 pb-0.5">
             {!isImage && work.title && (
               <h4 className="truncate text-sm font-semibold text-white">{work.title}</h4>
             )}
-            {work.videoType && (
+            {tagLabel && (
               <p
                 className={`truncate text-[10px] font-medium tracking-[0.16em] text-muted uppercase ${
                   !isImage && work.title ? 'mt-0.5' : ''
                 }`}
               >
-                {work.videoType}
+                {tagLabel}
               </p>
             )}
           </div>
