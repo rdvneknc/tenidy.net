@@ -277,8 +277,8 @@ export const translations = {
       hqLabel: 'Merkezler',
       hqSubtitle: 'Üç ülkede, tek ekip.',
       offices: [
-        { city: 'Wyoming', country: 'United States' },
         { city: 'Tallinn', country: 'Estonia' },
+        { city: 'Wyoming', country: 'United States' },
         { city: 'Ankara', country: 'Türkiye' },
       ],
     },
@@ -563,8 +563,8 @@ export const translations = {
       hqLabel: 'Headquarters',
       hqSubtitle: 'Three countries. One team.',
       offices: [
-        { city: 'Wyoming', country: 'United States' },
         { city: 'Tallinn', country: 'Estonia' },
+        { city: 'Wyoming', country: 'United States' },
         { city: 'Ankara', country: 'Türkiye' },
       ],
     },
@@ -848,8 +848,8 @@ export const translations = {
       hqLabel: 'Peakontorid',
       hqSubtitle: 'Kolm riiki. Üks meeskond.',
       offices: [
-        { city: 'Wyoming', country: 'Ameerika Ühendriigid' },
         { city: 'Tallinn', country: 'Eesti' },
+        { city: 'Wyoming', country: 'Ameerika Ühendriigid' },
         { city: 'Ankara', country: 'Türgi' },
       ],
     },
@@ -1133,8 +1133,8 @@ export const translations = {
       hqLabel: 'Pääkonttorit',
       hqSubtitle: 'Kolme maata. Yksi tiimi.',
       offices: [
-        { city: 'Wyoming', country: 'Yhdysvallat' },
         { city: 'Tallinn', country: 'Viro' },
+        { city: 'Wyoming', country: 'Yhdysvallat' },
         { city: 'Ankara', country: 'Turkki' },
       ],
     },
@@ -1418,8 +1418,8 @@ export const translations = {
       hqLabel: 'Офисы',
       hqSubtitle: 'Три страны. Одна команда.',
       offices: [
-        { city: 'Wyoming', country: 'США' },
         { city: 'Tallinn', country: 'Эстония' },
+        { city: 'Wyoming', country: 'США' },
         { city: 'Ankara', country: 'Турция' },
       ],
     },

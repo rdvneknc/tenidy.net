@@ -37,13 +37,19 @@ export default function Contact() {
     setStatus('')
     const data = new FormData(formEl)
     try {
-      await createMessage({
+      const payload = {
         name: data.get('name'),
         email: data.get('email'),
         company: data.get('company') || '',
         projectType,
         message: data.get('message'),
-      })
+      }
+      await createMessage(payload)
+      fetch('/api/notify-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).catch(() => {})
       setStatus('ok')
       formEl.reset()
       setProjectType(contact.projectTypes[0])

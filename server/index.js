@@ -4,6 +4,7 @@ import multer from 'multer'
 import path from 'path'
 import { db, uploadsDir } from './db.js'
 import { login, requireAuth } from './auth.js'
+import { notifyTelegram } from './telegram.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -229,6 +230,18 @@ app.delete('/api/videos/:id', requireAuth, (req, res) => {
   const info = db.prepare('DELETE FROM videos WHERE id = ?').run(req.params.id)
   if (!info.changes) return res.status(404).json({ error: 'Not found' })
   res.json({ ok: true })
+})
+
+app.post('/api/notify-message', async (req, res) => {
+  try {
+    const result = await notifyTelegram(req.body || {})
+    if (result.skipped) return res.status(200).json(result)
+    if (!result.ok) return res.status(400).json(result)
+    return res.status(200).json({ ok: true })
+  } catch (err) {
+    console.error('Telegram notify failed', err)
+    return res.status(500).json({ error: 'Notify failed' })
+  }
 })
 
 // Messages

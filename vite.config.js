@@ -9,6 +9,7 @@ export default defineConfig({
     proxy: {
       // local-media is handled by the Vite plugin; other /api/* can still hit Express if needed
       '/api/upload': 'http://localhost:3001',
+      '/api/notify-message': 'http://localhost:3001',
       '/uploads': 'http://localhost:3001',
     },
   },
