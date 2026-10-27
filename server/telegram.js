@@ -1,7 +1,10 @@
 /** Send a contact-form alert via Telegram Bot API (free). */
 export async function notifyTelegram(payload) {
-  const token = process.env.TELEGRAM_BOT_TOKEN
-  const chatId = process.env.TELEGRAM_CHAT_ID
+  const token = String(process.env.TELEGRAM_BOT_TOKEN || '').trim()
+  // Strip accidental quotes/spaces from Vercel env values
+  const chatId = String(process.env.TELEGRAM_CHAT_ID || '')
+    .trim()
+    .replace(/^["']|["']$/g, '')
   if (!token || !chatId) {
     return { ok: false, skipped: true, reason: 'Telegram env not configured' }
   }
