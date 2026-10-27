@@ -311,7 +311,7 @@ export async function reorderVideos(ids) {
 }
 
 export async function createMessage(data) {
-  const ref = await addDoc(messagesCol, {
+  const payload = {
     name: data.name,
     email: data.email,
     company: data.company || '',
@@ -319,9 +319,13 @@ export async function createMessage(data) {
     message: data.message,
     isRead: false,
     createdAt: serverTimestamp(),
+  }
+  // Public visitors can create but not read messages — don't getDoc after write.
+  const ref = await addDoc(messagesCol, payload)
+  return mapMessage(ref.id, {
+    ...payload,
+    createdAt: new Date().toISOString(),
   })
-  const created = await getDoc(ref)
-  return mapMessage(ref.id, created.data())
 }
 
 export async function listMessages() {
