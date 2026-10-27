@@ -1,9 +1,13 @@
 import { createContext, useContext, useMemo, useState, useEffect } from 'react'
-import { translations } from './translations'
+import { availableLocaleCodes, translations } from './translations'
 
 const LanguageContext = createContext(null)
 
-const SUPPORTED = new Set(Object.keys(translations))
+const AVAILABLE = new Set(availableLocaleCodes)
+
+function isAvailableLocale(code) {
+  return AVAILABLE.has(code) && Boolean(translations[code])
+}
 
 /** Map browser language → site locale (no IP / geo lookup). */
 function detectBrowserLocale() {
@@ -18,8 +22,8 @@ function detectBrowserLocale() {
   for (const raw of candidates) {
     const code = String(raw).toLowerCase().replace('_', '-')
     const primary = code.split('-')[0]
-    if (SUPPORTED.has(primary)) return primary
-    if (SUPPORTED.has(code)) return code
+    if (isAvailableLocale(primary)) return primary
+    if (isAvailableLocale(code)) return code
   }
 
   return 'en'
@@ -28,7 +32,7 @@ function detectBrowserLocale() {
 function getInitialLocale() {
   try {
     const saved = localStorage.getItem('ekiworks-locale')
-    if (saved && translations[saved]) return saved
+    if (saved && isAvailableLocale(saved)) return saved
   } catch {
     // ignore private-mode / blocked storage
   }
@@ -39,6 +43,10 @@ export function LanguageProvider({ children }) {
   const [locale, setLocale] = useState(getInitialLocale)
 
   useEffect(() => {
+    if (!isAvailableLocale(locale)) {
+      setLocale(detectBrowserLocale())
+      return
+    }
     try {
       localStorage.setItem('ekiworks-locale', locale)
     } catch {
@@ -50,9 +58,9 @@ export function LanguageProvider({ children }) {
   const value = useMemo(() => {
     const dict = translations[locale] || translations.en
     return {
-      locale,
+      locale: isAvailableLocale(locale) ? locale : 'en',
       setLocale: (code) => {
-        if (translations[code]) setLocale(code)
+        if (isAvailableLocale(code)) setLocale(code)
       },
       t: dict,
     }

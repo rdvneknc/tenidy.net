@@ -64,43 +64,34 @@ export default function LanguageSwitcher({ compact = false }) {
           <p className="px-2.5 pt-1.5 pb-2 text-[10px] font-medium tracking-[0.16em] text-muted uppercase">
             {t.lang.label}
           </p>
-          {locales.map((item) => {
-            const active = item.code === locale
-            const disabled = !item.available
-            return (
-              <button
-                key={item.code}
-                type="button"
-                role="option"
-                aria-selected={active}
-                disabled={disabled}
-                onClick={() => {
-                  if (!item.available) return
-                  setLocale(item.code)
-                  setOpen(false)
-                }}
-                className={`flex w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-left text-sm transition ${
-                  disabled
-                    ? 'cursor-not-allowed text-white/30'
-                    : active
+          {locales
+            .filter((item) => item.available)
+            .map((item) => {
+              const active = item.code === locale
+              return (
+                <button
+                  key={item.code}
+                  type="button"
+                  role="option"
+                  aria-selected={active}
+                  onClick={() => {
+                    setLocale(item.code)
+                    setOpen(false)
+                  }}
+                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-left text-sm transition ${
+                    active
                       ? 'bg-lime/10 text-lime'
                       : 'text-white/80 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <span className="flex items-center gap-2.5">
-                  <Flag code={item.flag} className={disabled ? 'opacity-40' : ''} />
-                  {item.label}
-                </span>
-                {disabled ? (
-                  <span className="text-[10px] font-medium tracking-wide text-white/25 uppercase">
-                    {t.lang.soon}
+                  }`}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Flag code={item.flag} />
+                    {item.label}
                   </span>
-                ) : active ? (
-                  <Check className="size-3.5" strokeWidth={2.5} />
-                ) : null}
-              </button>
-            )
-          })}
+                  {active ? <Check className="size-3.5" strokeWidth={2.5} /> : null}
+                </button>
+              )
+            })}
         </div>
       )}
     </div>

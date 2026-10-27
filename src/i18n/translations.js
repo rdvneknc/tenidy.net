@@ -1,10 +1,13 @@
 export const locales = [
   { code: 'en', label: 'English', short: 'EN', flag: 'gb', available: true },
-  { code: 'tr', label: 'Türkçe', short: 'TR', flag: 'tr', available: true },
   { code: 'et', label: 'Eesti', short: 'ET', flag: 'ee', available: true },
+  { code: 'fi', label: 'Suomi', short: 'FI', flag: 'fi', available: true },
+  { code: 'ru', label: 'Русский', short: 'RU', flag: 'ru', available: true },
+  { code: 'tr', label: 'Türkçe', short: 'TR', flag: 'tr', available: false },
   { code: 'es', label: 'Español', short: 'ES', flag: 'es', available: false },
-  { code: 'fi', label: 'Suomi', short: 'FI', flag: 'fi', available: false },
 ]
+
+export const availableLocaleCodes = locales.filter((l) => l.available).map((l) => l.code)
 
 export const translations = {
   tr: {
@@ -590,7 +593,7 @@ export const translations = {
     },
     seo: {
       home: {
-        title: 'AI Sisuturunduse Agentuur',
+        title: 'AI-sisuloome agentuur',
         description:
           'ekiworks — tehisintellektil põhinevad filmid, visuaalid, veebilehed ja loominguline sisu brändidele, mängudele ja äppidele.',
       },
@@ -722,7 +725,7 @@ export const translations = {
           description:
             'Tehisintellekti abil loodud, sisuloojate stiilis videod loomuliku esitusega ja samastatavate stsenaariumidega. Tootetutvustused, demod ja reklaamivariandid sinu publikule.',
           details: [
-            'Muuda sõnum lähenemisväärsemaks tehisintellekti abil loodud, sisuloojate stiilis videodega. Arendame sisu samastatavate olukordade, loomuliku esituse ja selge tooteteavituse ümber — lühitutvustustest demode, selgitajate ja probleem–lahendus reklaamideni.',
+            'Too oma sõnum inimestele lähemale tehisintellekti abil loodud, sisuloojate stiilis videodega. Arendame sisu samastatavate olukordade, loomuliku esituse ja selge tooteteavituse ümber — lühitutvustustest demode, selgitavate videote ja probleem–lahendus reklaamideni.',
             'Kujundame stsenaariumi, esineja stiili, keskkonna ja tempo vastavalt publikule ning platvormile, kus video ilmuub. Vestluslik kosmeetikatutvustus vajab teist lähenemist kui mobiilimängu soovitus või äpi juhend. Loome ka alternatiivseid hook’e, stsenaariume ja CTA-sid, et saaksid sama pakkumist eri viisidel edasi anda. Kogu protsessi jooksul keskendume usutavale esitusele, lihtsale keelele ja kergesti jälgitavale sõnumile.',
           ],
         },
@@ -742,7 +745,7 @@ export const translations = {
           description:
             'Kohandatud tootepildid, kampaaniavisuaalid ja bränditud visuaalid. Eristuvad kujutised sotsiaalmeedia jaoks, e-poodidele, veebilehtedele ja reklaamikampaaniatele.',
           details: [
-            'Näita tooteid ja ideid keskkondades, mis paneb need silma paistma. Loome kohandatud tehisintellektil põhinevaid kujutisi kampaaniatele, e-poodidele, veebilehtedele ja sotsiaalmeediale — hoolikalt stiliseeritud tooteseadetest kujutlusvõimeliste toimetuslike stseenideni ja bränditud visuaalideni.',
+            'Näita tooteid ja ideid keskkondades, mis paneb need silma paistma. Loome kohandatud tehisintellektil põhinevaid kujutisi kampaaniatele, e-poodidele, veebilehtedele ja sotsiaalmeediale — hoolikalt stiliseeritud tootekompositsioonidest kujutlusvõimeliste toimetuslike stseenideni ja bränditud visuaalideni.',
             'Iga pilt algab visuaalse suunaga, mis on kujundatud toote, publiku ja kasutusotstarbe ümber. Arvestame kompositsiooni, valgust, värvi, materjale ja tausta, et luua ühtne välimus. Töötades sinu viidete ja tootematerjalidega, pöörame tähelepanu detailidele, mis seovad kujutise brändiga. Saame arendada ka erinevaid stseene, kompositsioone ja kuvasuhteid, et sul oleks koordineeritud visuaalide komplekt kõikidele kanalitele.',
           ],
         },
@@ -862,6 +865,576 @@ export const translations = {
     lang: {
       label: 'Keel',
       soon: 'Varsti',
+    },
+  },
+  fi: {
+    nav: {
+      work: 'Video & visuaalit',
+      websites: 'Verkkosivut',
+      services: 'Palvelut',
+      about: 'Meistä',
+      contact: 'Yhteystiedot',
+      cta: 'Ota yhteyttä',
+    },
+    seo: {
+      home: {
+        title: 'AI-sisältötoimisto',
+        description:
+          'ekiworks — tekoälyllä tuotetut filmit, visuaalit, verkkosivut ja luova sisältö brändeille, peleille ja sovelluksille.',
+      },
+      work: {
+        title: 'Video & visuaalit',
+        description:
+          'Tutustu ekiworksin video- ja visuaaliportfolioon — lyhytmuoto, elokuvamaiset filmit ja AI-kuvat.',
+      },
+      websites: {
+        title: 'Verkkosivut',
+        description:
+          'ekiworksin verkkosivusuunnittelu — modernit, nopeat sivustot brändisi ja tavoitteidesi ympärille.',
+      },
+      services: {
+        title: 'Palvelut',
+        description:
+          'Peli- ja sovellusmainokset, AI-mainokset, UGC, some-sisältö, tuotekuvat, verkkosivusuunnittelu, mobiilisovellukset ja some-hallinta.',
+      },
+      about: {
+        title: 'Meistä',
+        description:
+          'ekiworksista — markkinoinnin ja luovan työn kokemus vuodesta 2021; AI-video ja some.',
+      },
+      contact: {
+        title: 'Yhteystiedot',
+        description: 'Ota yhteyttä ekiworksiin — kerro projektistasi ja aloitetaan.',
+      },
+      blog: {
+        title: 'Blogi',
+        description: 'Ajatuksia luovasta prosessista, AI-sisällöstä ja bränditarinoista.',
+      },
+    },
+    hero: {
+      label: 'Luova & digitoimisto',
+      titleBefore: 'Muutamme ideat',
+      titleAccent: 'digitaalisiksi kokemuksiksi.',
+      titleAfter: '',
+      description:
+        'Tekoälyllä tuotetut videot, vaikuttavat visuaalit, verkkosivut ja sovellukset — huolella brändillesi.',
+      explore: 'Tutustu videoihin & visuaaleihin',
+      exploreWebsites: 'Tutustu verkkosivuihin & sovelluksiin',
+      showreel: 'Katso showreel',
+      strip: ['Peli- & sovellusmainokset', 'AI-mainokset', 'Verkkosivut', 'Mobiilisovellukset'],
+    },
+    portfolio: {
+      label: 'Video & visuaalit',
+      title: 'Valitut työt',
+      subtitle: 'Tekoälyllä tuotetut tarinat. Tehty erottumaan.',
+      viewAll: 'Näytä kaikki',
+      shortTitle: 'Lyhytmuotoiset tarinat',
+      filmTitle: 'Elokuvamaiset filmit',
+    },
+    workPage: {
+      label: 'Portfolio',
+      title: 'Video & visuaalit',
+      subtitle: 'Lyhytvideot, elokuvamaiset filmit ja AI-kuvat.',
+      all: 'Kaikki',
+      images: 'Kuvat',
+      empty: 'Ei vielä sisältöä.',
+      showMore: 'Näytä lisää',
+    },
+    websitesPage: {
+      label: 'Portfolio',
+      title: 'Verkkosivut',
+      subtitle: 'Modernit verkkosivut, jotka olemme suunnitelleet brändeille.',
+      visit: 'Vieraile sivustolla',
+      empty: 'Verkkosivuja ei ole vielä lisätty.',
+    },
+    services: {
+      label: 'Palvelut',
+      title: 'Mitä teemme',
+      viewAll: 'Kaikki palvelut',
+      items: [
+        {
+          title: 'Peli- & sovellusmainokset',
+          description:
+            'Trailereita, pelivideoita ja ominaisuuksia esitteleviä videoita. Vahvat hookit ja selkeä tarinankerronta.',
+        },
+        {
+          title: 'AI-mainokset & tuotevideot',
+          description:
+            'Elokuvamaiset brändifilmit ja tuotevideot ideasta valmiiseen editointiin — tarinaasi tukevat visuaalit.',
+        },
+        {
+          title: 'Verkkosivusuunnittelu',
+          description:
+            'Modernit, nopeat sivustot brändisi ympärille — selkeä rakenne, vahvat visuaalit ja konversioon ohjaava kokemus.',
+        },
+        {
+          title: 'Mobiilisovellukset',
+          description:
+            'Modernit iOS- ja Android-sovellukset — selkeät käyttöliittymät ja brändiisi sopiva tuotekokemus.',
+        },
+      ],
+    },
+    servicesPage: {
+      label: 'Mitä teemme',
+      titleBefore: 'Luovia palveluita.',
+      titleAccent: 'Brändisi ympärille.',
+      subtitle:
+        'Videot, visuaalit, verkkosivut, mobiilisovellukset ja some-tuki — yhdessä toimiva kokonaisuus.',
+      discuss: 'Keskustellaan projektista',
+      footerTitle: 'Luodaan jotain, joka jää mieleen.',
+      cta: 'Kerro projektistasi',
+      items: [
+        {
+          id: 'game-app-ads',
+          title: 'Peli- & sovellusmainokset',
+          description:
+            'Trailereita, pelivideoita ja ominaisuuksia esitteleviä videoita peleistä ja sovelluksista. Vahvat hookit ja selkeä tarinankerronta, jotka antavat syyn kokeilla.',
+          details: [
+            'Anna ihmisille syy lopettaa skrollaus ja tutustua siihen, mitä olet rakentanut. Luomme trailereita, pelieditointeja, ominaisuusnäyttöjä ja mainoskreativeja, jotka tuovat esiin pelisi tai sovelluksesi vetovoiman. Jokainen konsepti alkaa selkeällä kysymyksellä: mikä saa tämän yleisön kokeilemaan?',
+            'Avaushookista viimeiseen toimintakehotukseen muotoilemme visuaalit, rytmin ja viestin sen vastauksen ympärille. Pelimateriaali, sovellusnäytöt ja tekoälyllä tuotetut kohtaukset voivat yhdistyä eri lähestymistavoissa, jolloin saat testattavia variaatioita eri yleisöille ja sijoitteluille. Mukautamme jokaisen videon kampanjasi tarvitsemiin formaatteihin pitäen tuotteen kokemuksen ja persoonallisuuden keskiössä.',
+          ],
+        },
+        {
+          id: 'ai-commercials',
+          title: 'AI-mainokset & tuotevideot',
+          description:
+            'Elokuvamaiset brändifilmit ja tuotevideot ideasta valmiiseen editointiin. Harkitut visuaalit, jotka herättävät tarinasi henkiin ja nostavat tuotteesi esiin.',
+          details: [
+            'Muuta brändisi tarina filmiksi, jota ihmiset haluavat katsoa. Luomme tekoälyllä tuotettuja mainoksia ja tuotevideoita, joissa yhdistyvät harkitut konseptit, elokuvamaiset visuaalit ja tarkoituksellinen editointi. Esitteletkö tuotetta, lanseeraatko kampanjaa vai kerrotko erottuvuudestasi — rakennamme kreatiivin selkeän viestin ympärille.',
+            'Työmme kattaa konseptikehityksen, käsikirjoituksen, visuaalisen ohjauksen, kohtausten luonnin ja lopullisen editoinnin. Kiinnitämme huomiota siihen, miltä tuotteesi näyttää, miten hyödyt viestitään ja miten jokainen kohtaus rakentaa tarinaa. Tuloksena on brändiisi sidottu sisältö, jota voi mukauttaa mainontaan, someen tai verkkosivulle.',
+          ],
+        },
+        {
+          id: 'ai-ugc',
+          title: 'AI UGC -videot',
+          description:
+            'Tekoälyllä tuotettuja, creator-tyylisiä videoita luonnollisella esityksellä ja samaistuttavilla tilanteilla. Tuote-esittelyt, demot ja mainosvariaatiot yleisöllesi.',
+          details: [
+            'Tee viestistäsi lähestyttävämpi tekoälyllä tuotetuilla, creator-tyylisillä videoilla. Kehitämme sisältöä samaistuttavien tilanteiden, luonnollisen esityksen ja selkeän tuoteviestinnän ympärille — lyhyistä esittelyistä demoihin, selittäviin videoihin ja ongelma–ratkaisu-mainoksiin.',
+            'Muotoilemme käsikirjoituksen, esiintyjän tyylin, ympäristön ja rytmin yleisösi ja alustan mukaan. Keskusteleva ihonhoitoesittely vaatii eri lähestymistavan kuin mobiilipelisuositus tai sovelluswalkthrough. Luomme myös vaihtoehtoisia hookeja, käsikirjoituksia ja CTA:ita, jotta voit testata eri tapoja kertoa samasta tarjouksesta. Koko prosessissa keskitymme uskottavaan esitykseen, selkeään kieleen ja helposti seurattavaan viestiin.',
+          ],
+        },
+        {
+          id: 'social-content',
+          title: 'Somesisältö',
+          description:
+            'Reelit, Shortsit ja TikTok-videot brändisi arkeen. Tuoreita konsepteja, tarttuvia hookeja ja yhtenäinen ääni kanavillasi.',
+          details: [
+            'Anna yleisöllesi jotain tuoretta katsottavaa ja syy palata. Luomme Reelejä, Shortseja, TikTok-videoita ja tukevaa somesisältöä, joka heijastaa brändisi persoonallisuutta ja istuu luonnollisesti kullekin alustalle.',
+            'Lähestymistapamme alkaa ideoista: toistuvat sarjat, tuote-esittelyt, opetusklipit, viihdyttävät tarinat ja ajankohtaiset ilmoitukset. Sitten kehitämme hookit, käsikirjoitukset, visuaalit, kuvatekstit ja editoinnit. Tekoäly antaa tilaa mielikuvituksellisille kohtauksille ja eri luoville suunnille, samalla kun yhtenäinen visuaalinen kieli pitää sisältösi tunnistettavana. Tarvitsetpa yksittäisiä julkaisuja tai jatkuvaa kreatiivivirtaa — autamme rakentamaan feedin, jossa on vaihtelua, tarkoitusta ja selkeä brändiääni.',
+          ],
+        },
+        {
+          id: 'ai-visuals',
+          title: 'AI-visuaalit & tuotekuvat',
+          description:
+            'Räätälöidyt tuotekuvat, kampanjavisuaalit ja brändätyt kuvat. Erottuvaa kuvamateriaalia someen, verkkokauppaan, sivustoille ja mainontaan.',
+          details: [
+            'Näytä tuotteesi ja ideasi ympäristöissä, joissa ne erottuvat. Luomme räätälöityjä tekoälykuvia kampanjoihin, verkkokauppoihin, sivustoille ja someen — huolellisesti sommitelluista tuotekuvista mielikuvituksellisiin editorial-kohtauksiin ja brändättyihin artworkeihin.',
+            'Jokainen kuva alkaa visuaalisesta suunnasta, joka rakentuu tuotteesi, yleisösi ja käyttötarkoituksen ympärille. Huomioimme sommittelun, valon, värin, materiaalit ja taustat yhtenäisen ilmeen luomiseksi. Työskentelemme referenssiesi ja tuoteaineistojesi pohjalta ja kiinnitämme huomiota yksityiskohtiin, jotka sitovat kuvan brändiisi. Voimme myös kehittää eri kohtauksia, sommitteluja ja kuvasuhteita koordinoitua settiä varten.',
+          ],
+        },
+        {
+          id: 'website-design',
+          title: 'Verkkosivusuunnittelu',
+          description:
+            'Modernit, nopeat verkkosivut brändisi ympärille. Selkeä rakenne, vahvat visuaalit ja kokemus, joka saa vierailijan toimimaan.',
+          details: [
+            'Tee brändisi digitaalisesta etuovesta selkeä, nopea ja mieleenpainuva. Yrityssivustoista tuote- ja kampanjasivuihin suunnittelemme mobiiliystävällisiä sivustoja, jotka heijastavat identiteettiäsi ja keskittyvät konversioon.',
+            'Prosessi kattaa kartoituksen, tietorakenteen, visuaalisen suunnan, käyttöliittymäsuunnittelun ja julkaisuvalmiin toimituksen. Pidämme huolta, että viesti ymmärretään ensi silmäyksellä, sisältö pysyy luettavana ja sivusto toimii hyvin sekä desktopissa että mobilissa. Voimme työskennellä olemassa olevilla brändiaineistoillasi — tai vahvistaa sivuja tekoälyvisuaaleilla ja sisällöllä.',
+          ],
+        },
+        {
+          id: 'mobile-apps',
+          title: 'Mobiilisovellukset',
+          description:
+            'Modernit iOS- ja Android-sovellukset. Selkeät käyttöliittymät, harkitut polut ja brändiisi sopiva tuotekokemus.',
+          details: [
+            'Suunnittelemme ja rakennamme mobiilituotteita ideasta julkaisuun. Selkeytämme käyttäjätarpeet, rakennamme yksinkertaisia käyttöliittymiä ja toimitamme sovelluksia, jotka tuntuvat yhtenäisiltä iOS:llä ja Androidilla.',
+            'Prosessi kattaa kartoituksen, käyttäjäpolut, UI/UX-suunnittelun, kehityksen ja kauppaan valmiin toimituksen. Keskitymme suorituskykyyn, selkeyteen ja konversioon ohjaaviin näyttöihin — aina brändikielesi mukaisesti.',
+          ],
+        },
+        {
+          id: 'social-mgmt',
+          title: 'Some-hallinta',
+          description:
+            'Tilin perustaminen, sisältösuunnittelu, julkaisu ja jatkuva hallinta. Selkeä strategia ja yhtenäinen läsnäolo, joka auttaa tavoittamaan yleisösi.',
+          details: [
+            'Rakenna some-läsnäolo, joka tuntuu aktiiviselta, järjestelmälliseltä ja yhtenäiseltä. Autamme brändejä ja yrityksiä perustamaan tilit, kehittämään käytännöllisen sisältösuunnan ja hallitsemaan jatkuvaa työtä, joka pitää kanavat liikkeessä.',
+            'Tukemme kattaa profiilin perustamisen ja optimoinnin, sisältösuunnittelun, ajoituksen, julkaisun ja yleisövuorovaikutuksen. Järjestämme ideat selkeäksi kalenteriksi, koordinoimme kreatiivituotantoa ja ylläpidämme yhtenäistä sävyä julkaisuissa ja keskusteluissa. Kun sisältö on live, tarkastelemme mikä kiinnittää huomion ja miten yleisö reagoi — ja viemme havainnot seuraavaan suunnitteluun. Aloitatpa nollasta tai parannat olemassa olevaa läsnäoloa — tuomme rakenteen ja jatkuvuuden some-toimintaasi.',
+          ],
+        },
+      ],
+    },
+    feedback: {
+      label: 'Asiakaspalautteet',
+      titleBefore: 'Hyviä tarinoita. Vielä parempia',
+      titleAccent: 'kumppanuuksia.',
+      subtitle: 'Muutama sana luovasta prosessista.',
+      verified: 'Vahvistettu',
+    },
+    mediaTags: {
+      'Game Ads': 'Pelimainokset',
+      'Application Ads': 'Sovellusmainokset',
+      UGC: 'UGC',
+      'Social Media': 'Some',
+      'AI Visuals': 'AI-visuaalit',
+      Other: 'Muu',
+    },
+    cta: {
+      label: 'Jutellaan',
+      title: 'Onko sinulla idea? Tehdään se todeksi.',
+      button: 'Kerro siitä meille',
+    },
+    footer: {
+      tagline: 'Luovia ideoita. Vakuuttavia videoita ja verkkosivuja.',
+    },
+    about: {
+      label: 'Meistä',
+      title: 'Tarinankertojia',
+      titleAccent: 'bisnesymmärryksellä.',
+      paragraphs: [
+        'Ekiworks yhdistää markkinoinnin, somen, verkkokaupan ja softan kokemuksen vuodesta 2021. Matkamme alkoi Turkissa ja jatkuu nyt toimistoilla Virossa ja Yhdysvalloissa — yhdistäen luovan ajattelun käytännölliseen bisnesymmärrykseen.',
+        'Kun tekoälytyökalut avasivat uusia luovia mahdollisuuksia, teimme tekoälyllä tuotetusta video- ja visuaalisisällöstä työn keskeisen osan. Tänään luomme mainoksia, tuotekuvia, elokuvamaisia tarinoita, somesisältöä ja verkkosivuja, jotka on räätälöity kunkin brändin persoonan, yleisön ja tavoitteiden mukaan. Autamme myös yrityksiä rakentamaan, kasvattamaan ja hallitsemaan some-läsnäoloaan.',
+        'Vuodet digitaalisilla aloilla ovat opettaneet, miten huomio ansaitaan ja miten siitä tehdään merkityksellistä. Mietimme huolella avaushookia, tarinaa, rytmiä ja sitä, mikä saa katsomaan tai jakamaan. Tuomme tämän ajattelun jokaiseen projektiin — sekä valmiuden kokeilla ja tutkia uusia ideoita.',
+        'Olemme pieni, käytännönläheinen tiimi, joka arvostaa selkeää viestintää ja harkittua yhteistyötä. Käytämme aikaa bisneksesi ymmärtämiseen, tuomme ideoita pöytään ja pysymme mukana ensimmäisestä keskustelusta viimeiseen editointiin. Lanseeraatpa jotain uutta tai haluat brändillesi tuoretta energiaa — autamme mielellämme luomaan jotain, jonka ihmiset muistavat.',
+      ],
+      stats: [
+        { value: '2021', label: 'Alkaen' },
+        { value: '3', label: 'Maata' },
+        { value: 'AI', label: 'Fokus' },
+      ],
+      cta: 'Tehdään yhteistyötä',
+    },
+    contact: {
+      label: 'Yhteystiedot',
+      title: 'Hyvät ideat alkavat',
+      titleAccent: 'keskustelulla.',
+      subtitle: 'Kerro, mitä sinulla on mielessä. Autamme muotoilemaan seuraavan askeleen.',
+      whatsappLabel: 'WhatsApp',
+      whatsappCta: 'Viesti WhatsAppissa',
+      emailLabel: 'Sähköposti',
+      email: 'ridvan@ekiworks.com',
+      formTitle: 'Kerro projektistasi',
+      formSubtitle: 'Muutama tieto riittää alkuun.',
+      name: 'Koko nimi',
+      namePlaceholder: 'Nimesi',
+      company: 'Yritys',
+      companyOptional: 'Yritys (valinnainen)',
+      companyPlaceholder: 'Yritys tai brändi',
+      emailField: 'Sähköposti',
+      emailPlaceholder: 'sina@yritys.com',
+      projectType: 'Missä voimme auttaa?',
+      projectTypes: ['AI-video', 'Visuaalinen sisältö', 'Verkkosivu', 'Mobiilisovellus', 'Some'],
+      message: 'Ideasi',
+      messagePlaceholder: 'Mitä haluaisit luoda?',
+      send: 'Lähetä kysely',
+      privacy: 'Käytämme tietojasi vain kyselyysi vastaamiseen.',
+      hqLabel: 'Pääkonttorit',
+      hqSubtitle: 'Kolme maata. Yksi tiimi.',
+      offices: [
+        { city: 'Wyoming', country: 'Yhdysvallat' },
+        { city: 'Tallinn', country: 'Viro' },
+        { city: 'Ankara', country: 'Turkki' },
+      ],
+    },
+    blog: {
+      label: 'Blogi',
+      title: 'Muistiinpanoja & ideoita',
+      subtitle: 'Ajatuksia luovasta prosessista, AI-sisällöstä ja bränditarinoista.',
+      empty: 'Julkaistuja kirjoituksia ei vielä ole.',
+      notFound: 'Kirjoitusta ei löytynyt.',
+      back: 'Takaisin kaikkiin kirjoituksiin',
+      footerLink: 'Blogi',
+    },
+    lang: {
+      label: 'Kieli',
+      soon: 'Pian',
+    },
+  },
+  ru: {
+    nav: {
+      work: 'Видео и визуалы',
+      websites: 'Сайты',
+      services: 'Услуги',
+      about: 'О нас',
+      contact: 'Контакты',
+      cta: 'Связаться',
+    },
+    seo: {
+      home: {
+        title: 'AI-контент агентство',
+        description:
+          'ekiworks — AI-фильмы, визуалы, сайты и креативный контент для брендов, игр и приложений.',
+      },
+      work: {
+        title: 'Видео и визуалы',
+        description:
+          'Портфолио ekiworks — короткий формат, кинематографичные фильмы и AI-изображения.',
+      },
+      websites: {
+        title: 'Сайты',
+        description:
+          'Дизайн сайтов ekiworks — современные, быстрые сайты под бренд и цели.',
+      },
+      services: {
+        title: 'Услуги',
+        description:
+          'Реклама игр и приложений, AI-ролики, UGC, соцсети, продукт-визуалы, дизайн сайтов, мобильные приложения и ведение соцсетей.',
+      },
+      about: {
+        title: 'О нас',
+        description:
+          'Об ekiworks — опыт в маркетинге и креативе с 2021 года; AI-видео и соцсети.',
+      },
+      contact: {
+        title: 'Контакты',
+        description: 'Свяжитесь с ekiworks — расскажите о проекте, начнём вместе.',
+      },
+      blog: {
+        title: 'Блог',
+        description: 'Заметки о креативном процессе, AI-контенте и брендовых историях.',
+      },
+    },
+    hero: {
+      label: 'Креативное и digital-агентство',
+      titleBefore: 'Превращаем идеи в',
+      titleAccent: 'цифровой опыт.',
+      titleAfter: '',
+      description:
+        'AI-видео, выразительные визуалы, сайты и приложения — созданы с вниманием к вашему бренду.',
+      explore: 'Смотреть видео и визуалы',
+      exploreWebsites: 'Смотреть сайты и приложения',
+      showreel: 'Смотреть showreel',
+      strip: ['Реклама игр и приложений', 'AI-ролики', 'Сайты', 'Мобильные приложения'],
+    },
+    portfolio: {
+      label: 'Видео и визуалы',
+      title: 'Избранные работы',
+      subtitle: 'Истории на базе AI. Созданы, чтобы выделяться.',
+      viewAll: 'Смотреть все',
+      shortTitle: 'Короткий формат',
+      filmTitle: 'Кинематографичные фильмы',
+    },
+    workPage: {
+      label: 'Портфолио',
+      title: 'Видео и визуалы',
+      subtitle: 'Короткие видео, кинематографичные фильмы и AI-изображения.',
+      all: 'Все',
+      images: 'Изображения',
+      empty: 'Пока ничего нет.',
+      showMore: 'Показать ещё',
+    },
+    websitesPage: {
+      label: 'Портфолио',
+      title: 'Сайты',
+      subtitle: 'Современные сайты, которые мы спроектировали для брендов.',
+      visit: 'Открыть сайт',
+      empty: 'Сайты пока не добавлены.',
+    },
+    services: {
+      label: 'Услуги',
+      title: 'Что мы делаем',
+      viewAll: 'Все услуги',
+      items: [
+        {
+          title: 'Реклама игр и приложений',
+          description:
+            'Трейлеры, gameplay-креативы и видео о фичах. Сильные хуки и ясный сторителлинг.',
+        },
+        {
+          title: 'AI-ролики и продукт-видео',
+          description:
+            'Кинематографичные бренд-фильмы и продукт-видео — от концепции до финального монтажа.',
+        },
+        {
+          title: 'Дизайн сайтов',
+          description:
+            'Современные быстрые сайты под бренд — ясная структура, сильные визуалы и фокус на конверсию.',
+        },
+        {
+          title: 'Мобильные приложения',
+          description:
+            'Современные приложения для iOS и Android — понятные интерфейсы и опыт, соответствующий бренду.',
+        },
+      ],
+    },
+    servicesPage: {
+      label: 'Что мы делаем',
+      titleBefore: 'Креативные услуги.',
+      titleAccent: 'Под ваш бренд.',
+      subtitle:
+        'Видео, визуалы, сайты, мобильные приложения и поддержка соцсетей — как единая система.',
+      discuss: 'Обсудим проект',
+      footerTitle: 'Создадим то, что запомнится.',
+      cta: 'Расскажите о проекте',
+      items: [
+        {
+          id: 'game-app-ads',
+          title: 'Реклама игр и приложений',
+          description:
+            'Трейлеры, gameplay-креативы и видео о фичах для игр и приложений. Сильные хуки и ясный сторителлинг, которые дают повод попробовать.',
+          details: [
+            'Дайте людям причину остановить скролл и узнать, что вы создали. Мы делаем трейлеры, gameplay-монтажи, обзоры фич и рекламные креативы, которые раскрывают привлекательность вашей игры или приложения. Каждая концепция начинается с вопроса: что убедит эту аудиторию попробовать?',
+            'От первого хука до финального призыва к действию мы выстраиваем визуал, темп и сообщение вокруг этого ответа. Геймплей, экраны приложения и AI-сцены могут сочетаться в разных подходах — так вы получаете вариации для тестов по аудиториям и размещениям. Мы адаптируем каждое видео под нужные форматы кампании, сохраняя опыт и характер продукта в центре.',
+          ],
+        },
+        {
+          id: 'ai-commercials',
+          title: 'AI-ролики и продукт-видео',
+          description:
+            'Кинематографичные бренд-фильмы и продукт-видео — от концепции до финального монтажа. Вдумчивые визуалы, которые оживляют историю и ставят продукт в фокус.',
+          details: [
+            'Превратите историю бренда в фильм, который хочется смотреть. Мы создаём AI-рекламу и продукт-видео с продуманной концепцией, кинематографичным визуалом и целенаправленным монтажом. Представляете продукт, запускаете кампанию или объясняете, чем вы отличаетесь — строим креатив вокруг ясного сообщения.',
+            'Работа включает концепт, сценарий, визуальное направление, создание сцен и финальный монтаж. Мы следим за тем, как выглядит продукт, как передаются преимущества и как каждая сцена работает на историю. Результат — контент, связанный с брендом и готовый к адаптации для рекламы, соцсетей или сайта.',
+          ],
+        },
+        {
+          id: 'ai-ugc',
+          title: 'AI UGC-видео',
+          description:
+            'AI-видео в стиле креаторов с естественной подачей и узнаваемыми ситуациями. Презентации продукта, демо и варианты рекламы под вашу аудиторию.',
+          details: [
+            'Сделайте сообщение ближе с помощью AI-видео в стиле креаторов. Мы развиваем контент вокруг узнаваемых ситуаций, естественной подачи и ясной коммуникации продукта — от коротких презентаций и демо до объясняющих роликов и рекламы «проблема–решение».',
+            'Мы формируем сценарий, стиль ведущего, окружение и темп под аудиторию и платформу. Разговорная презентация ухода за кожей требует другого подхода, чем рекомендация мобильной игры или walkthrough приложения. Также создаём альтернативные хуки, сценарии и CTA, чтобы вы могли тестировать разные способы сказать одно и то же. Во всём процессе фокус на убедительной подаче, понятном языке и сообщении, за которым легко следить.',
+          ],
+        },
+        {
+          id: 'social-content',
+          title: 'Контент для соцсетей',
+          description:
+            'Reels, Shorts и TikTok для повседневного присутствия бренда. Свежие концепции, цепляющие хуки и единый голос в каналах.',
+          details: [
+            'Дайте аудитории свежий контент и причину возвращаться. Мы создаём Reels, Shorts, TikTok и поддерживающий соцконтент, который отражает характер бренда и естественно ложится на каждую платформу.',
+            'Подход начинается с идей: серии, продукт-споты, обучающие клипы, развлекательные истории и своевременные анонсы. Затем разрабатываем хуки, сценарии, визуалы, подписи и монтаж. AI даёт пространство для ярких сцен и разных креативных направлений, а единый визуальный язык делает контент узнаваемым. Нужны отдельные посты или постоянный поток — помогаем собрать ленту с разнообразием, смыслом и ясным голосом бренда.',
+          ],
+        },
+        {
+          id: 'ai-visuals',
+          title: 'AI-визуалы и продукт-изображения',
+          description:
+            'Кастомные продукт-фото, кампанийный артворк и брендовые визуалы. Выразительные изображения для соцсетей, магазинов, сайтов и рекламы.',
+          details: [
+            'Покажите продукты и идеи в окружении, где они выделяются. Мы создаём кастомные AI-изображения для кампаний, онлайн-магазинов, сайтов и соцсетей — от аккуратно стилизованных продукт-композиций до editorial-сцен и брендового арта.',
+            'Каждое изображение начинается с визуального направления вокруг продукта, аудитории и цели использования. Мы учитываем композицию, свет, цвет, материалы и фон для цельного вида. Работая с вашими референсами и ассетами, следим за деталями, которые связывают картинку с брендом. Также можем развивать разные сцены, композиции и соотношения сторон для согласованного набора.',
+          ],
+        },
+        {
+          id: 'website-design',
+          title: 'Дизайн сайтов',
+          description:
+            'Современные быстрые сайты под бренд. Ясная структура, сильные визуалы и опыт, который ведёт к действию.',
+          details: [
+            'Сделайте цифровую витрину бренда ясной, быстрой и запоминающейся. От корпоративных сайтов до продуктовых и кампанийных страниц — проектируем сайты, адаптированные для мобильных устройств, которые отражают идентичность и фокусируются на конверсии.',
+            'Процесс включает исследование, информационную архитектуру, визуальное направление, UI-дизайн и готовую к запуску поставку. Важно, чтобы сообщение считывалось сразу, контент оставался читаемым, а сайт хорошо работал на десктопе и мобильном. Можем работать с вашими брендовыми ассетами — или усилить страницы AI-визуалами и контентом.',
+          ],
+        },
+        {
+          id: 'mobile-apps',
+          title: 'Мобильные приложения',
+          description:
+            'Современные приложения для iOS и Android. Понятные интерфейсы, продуманные сценарии и опыт, соответствующий бренду.',
+          details: [
+            'Проектируем и разрабатываем мобильные продукты от идеи до запуска. Уточняем потребности пользователей, создаём простые интерфейсы и поставляем приложения, которые ощущаются цельно на iOS и Android.',
+            'Процесс включает исследование, пользовательские сценарии, UI/UX, разработку и готовую к стору поставку. Фокус на производительности, ясности и экранах, ориентированных на конверсию — всегда в языке вашего бренда.',
+          ],
+        },
+        {
+          id: 'social-mgmt',
+          title: 'Ведение соцсетей',
+          description:
+            'Настройка аккаунтов, планирование контента, публикация и постоянное управление. Ясная стратегия и стабильное присутствие для связи с аудиторией.',
+          details: [
+            'Постройте присутствие в соцсетях, которое ощущается активным, организованным и цельным. Помогаем брендам и бизнесам запускать аккаунты, формировать практичное контент-направление и вести регулярную работу, которая держит каналы в движении.',
+            'Поддержка включает настройку и оптимизацию профиля, планирование контента, расписание, публикацию и взаимодействие с аудиторией. Мы собираем идеи в ясный календарь, координируем продакшн и поддерживаем единый тон в постах и диалогах. Когда контент выходит, смотрим, что привлекает внимание и как реагирует аудитория — и переносим наблюдения в следующее планирование. Начинаете с нуля или улучшаете текущее присутствие — добавляем структуру и непрерывность.',
+          ],
+        },
+      ],
+    },
+    feedback: {
+      label: 'Отзывы клиентов',
+      titleBefore: 'Отличные истории. Ещё лучше',
+      titleAccent: 'партнёрства.',
+      subtitle: 'Несколько слов о креативном процессе.',
+      verified: 'Проверено',
+    },
+    mediaTags: {
+      'Game Ads': 'Реклама игр',
+      'Application Ads': 'Реклама приложений',
+      UGC: 'UGC',
+      'Social Media': 'Соцсети',
+      'AI Visuals': 'AI-визуалы',
+      Other: 'Другое',
+    },
+    cta: {
+      label: 'Давайте поговорим',
+      title: 'Есть идея? Давайте воплотим.',
+      button: 'Расскажите нам',
+    },
+    footer: {
+      tagline: 'Креативные идеи. Цепляющие видео и сайты.',
+    },
+    about: {
+      label: 'О нас',
+      title: 'Рассказчики с',
+      titleAccent: 'деловым чутьём.',
+      paragraphs: [
+        'Ekiworks объединяет опыт в маркетинге, соцсетях, e-commerce и софте с 2021 года. Наш путь начался в Турции и продолжается офисами в Эстонии и США — соединяя креативное мышление с практичным пониманием бизнеса.',
+        'Когда AI-инструменты открыли новые креативные возможности, мы сделали AI-видео и визуальный контент центральной частью работы. Сегодня создаём рекламу, продукт-визуалы, кинематографичные истории, соцконтент и сайты под характер, аудиторию и цели каждого бренда. Также помогаем бизнесам запускать, развивать и вести присутствие в соцсетях.',
+        'Годы в digital научили нас, как завоевывать внимание и делать его ценным. Мы внимательно думаем о первом хуке, истории, темпе и о том, что заставляет смотреть дальше или делиться. Приносим это мышление в каждый проект — вместе с готовностью экспериментировать и искать свежие идеи.',
+        'Мы небольшая практичная команда, которая ценит ясное общение и вдумчивое сотрудничество. Мы уделяем время пониманию вашего бизнеса, приносим идеи и остаёмся рядом от первого разговора до финального монтажа. Запускаете новое или хотите свежую энергию для бренда — с радостью поможем создать то, что запомнится.',
+      ],
+      stats: [
+        { value: '2021', label: 'С' },
+        { value: '3', label: 'Страны' },
+        { value: 'AI', label: 'Фокус' },
+      ],
+      cta: 'Давайте работать вместе',
+    },
+    contact: {
+      label: 'Контакты',
+      title: 'Хорошие идеи начинаются с',
+      titleAccent: 'разговора.',
+      subtitle: 'Расскажите, что у вас на уме. Поможем сформировать следующий шаг.',
+      whatsappLabel: 'WhatsApp',
+      whatsappCta: 'Написать в WhatsApp',
+      emailLabel: 'Email',
+      email: 'ridvan@ekiworks.com',
+      formTitle: 'Расскажите о проекте',
+      formSubtitle: 'Нескольких деталей достаточно, чтобы начать.',
+      name: 'Имя',
+      namePlaceholder: 'Ваше имя',
+      company: 'Компания',
+      companyOptional: 'Компания (необязательно)',
+      companyPlaceholder: 'Компания или бренд',
+      emailField: 'Email',
+      emailPlaceholder: 'you@company.com',
+      projectType: 'Чем можем помочь?',
+      projectTypes: ['AI-видео', 'Визуальный контент', 'Сайт', 'Мобильное приложение', 'Соцсети'],
+      message: 'Ваша идея',
+      messagePlaceholder: 'Что вы хотите создать?',
+      send: 'Отправить запрос',
+      privacy: 'Мы используем ваши данные только для ответа на запрос.',
+      hqLabel: 'Офисы',
+      hqSubtitle: 'Три страны. Одна команда.',
+      offices: [
+        { city: 'Wyoming', country: 'США' },
+        { city: 'Tallinn', country: 'Эстония' },
+        { city: 'Ankara', country: 'Турция' },
+      ],
+    },
+    blog: {
+      label: 'Блог',
+      title: 'Заметки и идеи',
+      subtitle: 'Мысли о креативном процессе, AI-контенте и брендовых историях.',
+      empty: 'Пока нет опубликованных постов.',
+      notFound: 'Пост не найден.',
+      back: 'Назад ко всем постам',
+      footerLink: 'Блог',
+    },
+    lang: {
+      label: 'Язык',
+      soon: 'Скоро',
     },
   },
 }

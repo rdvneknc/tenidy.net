@@ -51,7 +51,9 @@ function mapMessage(id, data) {
 }
 
 function normalizePostLocale(locale) {
-  if (locale === 'tr' || locale === 'et' || locale === 'en') return locale
+  if (locale === 'tr' || locale === 'et' || locale === 'en' || locale === 'fi' || locale === 'ru') {
+    return locale
+  }
   return 'en'
 }
 
