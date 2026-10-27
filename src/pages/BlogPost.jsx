@@ -52,6 +52,18 @@ export default function BlogPost() {
         path={`/blog/${post.slug}`}
         image={post.coverImage || '/hero-banner.jpg'}
         type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt || t.seo.blog.description,
+          datePublished: post.createdAt || undefined,
+          dateModified: post.updatedAt || post.createdAt || undefined,
+          image: post.coverImage || undefined,
+          author: { '@type': 'Organization', name: 'ekiworks' },
+          publisher: { '@type': 'Organization', name: 'ekiworks' },
+          inLanguage: locale,
+        }}
       />
       <div className="container-pad py-12 md:py-16">
         <Link
@@ -75,7 +87,11 @@ export default function BlogPost() {
         {post.coverImage && (
           <img
             src={post.coverImage}
-            alt=""
+            alt={post.title}
+            width={1600}
+            height={686}
+            loading="eager"
+            decoding="async"
             className="mt-10 aspect-[21/9] w-full rounded-2xl object-cover"
           />
         )}

@@ -17,6 +17,7 @@ import AdminVideos from './admin/Videos'
 import AdminWebsites from './admin/Websites'
 import AdminMessages from './admin/Messages'
 import BlogAdmin from './admin/BlogAdmin'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
 
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -43,6 +45,7 @@ export default function App() {
               <Route path="messages" element={<AdminMessages />} />
               <Route path="blog" element={<BlogAdmin />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </AdminAuthProvider>

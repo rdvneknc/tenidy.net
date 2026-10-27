@@ -16,11 +16,19 @@ export default function Hero() {
         <img
           src={BANNER_MOBILE}
           alt=""
+          width={1080}
+          height={1920}
+          decoding="async"
+          fetchPriority="high"
           className="h-full w-full object-cover object-[center_38%] brightness-[1.08] contrast-[1.02] md:hidden"
         />
         <img
           src={BANNER_DESKTOP}
           alt=""
+          width={1920}
+          height={1080}
+          decoding="async"
+          fetchPriority="high"
           className="hidden h-full w-full object-cover object-center brightness-[1.08] contrast-[1.02] md:block"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55 md:hidden" />
